@@ -1,0 +1,2031 @@
+<!-- audience-brief
+читатель: Настя (владелец сезонного ОКР) — брифует функции этим документом; ответственные функций — маркетинг, коммерция, аналитика, операции, финансы, работа с продавцами, тех — открывают, чтобы подтвердить или вписать T-минус своих блоков и заполнить карточки
+знает: сезон, T-минус, свои рабочие блоки (прогноз, заявка на поставки, промо, креативы), категории, ретро, Back to School
+не знает: что план правится прямо на странице (перетаскивание полос, карточка по клику) и правки сохраняются с автором; что шкала общая шаблонная, а даты пересчитываются от старта выбранного сезона; где искать факт прошлого сезона (карточка блока и ретро внизу)
+должен: найти свои блоки, подтвердить или поправить сроки, заполнить образ результата и правила, вопросы оставить комментарием — до брифовки функций
+-->
+<title>Плейбук сезона</title>
+<style>
+:root {
+  color-scheme: light;
+  --lcol: 404px;  /* ширина колонки названий; сетка .g-lines обязана брать её же */
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink2: #52514e;
+  --muted: #676560;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11,11,11,.10);
+  --c-an: #2a78d6;
+  --c-com: #1baf7a;
+  --c-mk: #eb6834;
+  --c-ops: #d9a013;
+  --c-fin: #4a3aa7;
+  --c-sel: #e87ba4;
+  --c-tech: #898781;
+  --c-all: #2b2a28;
+  --startline: #0b0b0b;
+  --factd: #b5432e;
+  --tip-sep: rgba(255,255,255,.14); --tip-late-fg: #ffb4a8; --tip-late-bg: rgba(255,120,100,.22);
+  --tip-early-fg: #9be8c2; --tip-early-bg: rgba(110,220,160,.2); --tip-flat: rgba(255,255,255,.16); --tip-mut: .58; --tip-hint: .5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --ink: #ffffff;
+    --ink2: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255,255,255,.10);
+    --c-an: #3987e5;
+    --c-com: #199e70;
+    --c-mk: #d95926;
+    --c-ops: #b8860b;
+    --c-fin: #9085e9;
+    --c-sel: #d55181;
+    --c-tech: #898781;
+    --c-all: #e8e6e0;
+    --startline: #ffffff;
+    --factd: #e0736a;
+  --tip-sep: rgba(0,0,0,.16); --tip-late-fg: #8f2d1b; --tip-late-bg: rgba(200,70,50,.18);
+  --tip-early-fg: #11603f; --tip-early-bg: rgba(20,140,90,.18); --tip-flat: rgba(0,0,0,.1); --tip-mut: .78; --tip-hint: .72;
+    --tip-sep: rgba(0,0,0,.16); --tip-late-fg: #8f2d1b; --tip-late-bg: rgba(200,70,50,.18);
+    --tip-early-fg: #11603f; --tip-early-bg: rgba(20,140,90,.18); --tip-flat: rgba(0,0,0,.1); --tip-mut: .78; --tip-hint: .72;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --ink: #ffffff;
+  --ink2: #c3c2b7;
+  --muted: #898781;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255,255,255,.10);
+  --c-an: #3987e5;
+  --c-com: #199e70;
+  --c-mk: #d95926;
+  --c-ops: #b8860b;
+  --c-fin: #9085e9;
+  --c-sel: #d55181;
+  --c-tech: #898781;
+  --c-all: #e8e6e0;
+  --startline: #ffffff;
+  --factd: #e0736a;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --ink: #0b0b0b;
+  --ink2: #52514e;
+  --muted: #676560;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11,11,11,.10);
+  --c-an: #2a78d6;
+  --c-com: #1baf7a;
+  --c-mk: #eb6834;
+  --c-ops: #d9a013;
+  --c-fin: #4a3aa7;
+  --c-sel: #e87ba4;
+  --c-tech: #898781;
+  --c-all: #2b2a28;
+  --startline: #0b0b0b;
+  --factd: #b5432e;
+  --tip-sep: rgba(255,255,255,.14); --tip-late-fg: #ffb4a8; --tip-late-bg: rgba(255,120,100,.22);
+  --tip-early-fg: #9be8c2; --tip-early-bg: rgba(110,220,160,.2); --tip-flat: rgba(255,255,255,.16); --tip-mut: .58; --tip-hint: .5;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.page { max-width: 1240px; margin: 0 auto; padding: 40px 24px 64px; position: relative; }
+
+.eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink2); margin: 0 0 6px;
+}
+h1 {
+  font-size: clamp(26px, 4vw, 36px); font-weight: 750; letter-spacing: -.02em;
+  line-height: 1.12; margin: 0 0 8px; text-wrap: balance;
+}
+.meta { color: var(--ink2); font-size: 14px; margin: 0 0 18px; max-width: 72ch; }
+.meta b { color: var(--ink); font-weight: 600; }
+
+/* вводная и режим сезона */
+.introcard {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 18px; margin: 0 0 16px;
+}
+.introcard .blk-h { margin-bottom: 6px; }
+#intro { min-height: 56px; padding: 8px 12px; color: var(--ink2); white-space: pre-wrap; border-radius: 8px; outline: none; }
+#intro:hover { box-shadow: inset 0 0 0 1px var(--grid); }
+#intro:focus { box-shadow: inset 0 0 0 1.5px var(--ink); color: var(--ink); }
+#intro:empty::before { content: attr(data-ph); color: var(--muted); font-style: italic; }
+.blk-h {
+  font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 8px;
+}
+.seasonbar {
+  display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 16px; margin: 0 0 16px; font-size: 13.5px;
+}
+.seasonbar b { font-weight: 700; }
+.seasonbar label { display: inline-flex; align-items: center; gap: 7px; color: var(--ink2); }
+.seasonbar input[type="text"] {
+  width: 240px; background: var(--page); color: var(--ink); border: 1px solid var(--grid);
+  border-radius: 7px; padding: 4px 9px; font: 13.5px system-ui, sans-serif;
+}
+.seasonbar input[type="date"] {
+  background: var(--page); color: var(--ink); border: 1px solid var(--grid);
+  border-radius: 7px; padding: 3px 8px; font: 13.5px system-ui, sans-serif;
+}
+.seasonbar .hint { color: var(--muted); font-size: 12px; }
+
+/* легенда */
+.legend {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
+  font-size: 13px; color: var(--ink2); margin: 0 0 14px;
+}
+.legend .li { display: inline-flex; align-items: center; gap: 7px; }
+.legend .li.fn { cursor: pointer; border: 1px solid transparent; border-radius: 7px; padding: 2px 8px; margin: -2px -2px; }
+.legend .li.fn:hover { border-color: var(--border); background: var(--surface); }
+.legend .li.fn:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.legend.filtering .li.fn { opacity: .62; }
+.legend.filtering .li.fn.fon { opacity: 1; border-color: var(--ink); background: var(--surface); font-weight: 600; }
+.sw { width: 14px; height: 10px; border-radius: 3px; flex: none; }
+.sw-blk { width: 14px; height: 10px; border-radius: 3px; background: var(--surface); outline: 2px solid var(--ink); outline-offset: 1px; flex: none; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; }   /* вкладок теперь по числу функций — перенос обязателен */
+.tabdot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.ghostwrap .bar { opacity: .32; filter: grayscale(1); }   /* чужой блок не должен быть ярче своих */
+.ghostwrap .g-lcol .tid, .ghostwrap .g-lcol .tname { color: var(--muted); }
+#fnnote {
+  margin: 0 0 12px; padding: 9px 13px; border-radius: 9px; font-size: 12.5px;
+  background: var(--page); border: 1px solid var(--border); color: var(--ink2);
+}
+#fnnote b { color: var(--ink); }
+.ghostwrap .g-lcol .tname::after { content: ' · ждём этот блок'; font-size: 10.5px; color: var(--ink2); }
+.tabbtn {
+  padding: 6px 16px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--ink); font: 600 13px system-ui, sans-serif; cursor: pointer;
+}
+.tabbtn.on { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.tabbtn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.view { display: none; }
+.view.on { display: block; }
+
+.gtools {
+  display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center;
+  margin: 0 0 14px; padding-top: 10px; font-size: 12px; color: var(--ink2);
+  border-top: 1px solid var(--border);   /* отделяет действия от легенды-справки */
+}
+#faqPanel {
+  margin: 0 0 14px; padding: 10px 16px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 10px;
+}
+#faqPanel[hidden] { display: none; }
+#faqPanel ul { margin: 0; padding-left: 18px; font-size: 13px; color: var(--ink2); }
+#faqPanel li { margin: 4px 0; }
+#faqPanel b { color: var(--ink); }
+
+.gtools button, .gtools a#histLink {
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 7px;
+  background: var(--surface); color: var(--ink); font: 600 12px system-ui, sans-serif; cursor: pointer;
+  text-decoration: none; display: inline-block;
+}
+#toolmsg { color: var(--c-com); font-weight: 600; }
+
+/* ---------- gantt ---------- */
+.g-scroll {
+  overflow-x: auto; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 10px;
+}
+.g-inner { min-width: 1120px; position: relative; padding-bottom: 8px; }
+
+.g-headrow { display: flex; position: sticky; top: 0; z-index: 6; background: var(--surface); }
+.g-lcol { width: var(--lcol); flex: none; position: sticky; left: 0; z-index: 5; background: var(--surface); }
+.g-track { flex: 1; position: relative; }
+
+.g-months { display: flex; border-bottom: 1px solid var(--axis); }
+.g-months .g-track { height: 44px; }
+.g-months .m {
+  position: absolute; top: 4px; transform: translateX(-50%);
+  font-size: 12px; font-weight: 700; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.g-months .md {
+  position: absolute; top: 23px; transform: translateX(-50%);
+  font-size: 10.5px; color: var(--muted); font-variant-numeric: tabular-nums;
+}
+.g-months .g-lcol { display: flex; flex-direction: column; justify-content: center; padding: 0 12px 0 48px; position: relative; }
+#expAll { position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--ink);
+  font: 700 13px system-ui, sans-serif; cursor: pointer; padding: 3px 8px; }
+#expAll:hover { border-color: var(--ink); }
+.axdot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; }
+.g-months .axname { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.g-months .axsub { font-size: 10.5px; color: var(--muted); }
+.g-headrow.stuck { box-shadow: 0 3px 10px rgba(0,0,0,.09); }
+
+.g-body { position: relative; }
+.secwrap { position: relative; }
+.g-lines { position: absolute; top: 0; bottom: 0; left: var(--lcol); right: 0; z-index: 0; pointer-events: none; }
+.g-lines .vl { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--grid); }
+.g-lines .t0 { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px solid var(--startline); opacity: .55; }
+.g-lines .t0::after { z-index: 3; background: var(--surface); padding: 2px 1px; border-radius: 3px;
+  content: 'старт сезона';
+  position: absolute; top: 6px; left: 5px;
+  writing-mode: vertical-rl; font-size: 10px; letter-spacing: .06em; font-weight: 600;
+  color: var(--ink2); white-space: nowrap;
+}
+
+.g-sec {
+  display: flex; align-items: center; position: relative; z-index: 1;
+  margin-top: 14px; min-height: 30px;
+}
+.g-sec:first-child { margin-top: 6px; }
+.g-sec .g-lcol {
+  font-size: 13px; font-weight: 700; letter-spacing: .01em;
+  padding: 0 12px; height: 100%; display: flex; align-items: center; gap: 8px;
+}
+.g-sec .g-track { height: 100%; }
+.g-sec .period {
+  position: absolute; font-size: 11.5px; font-weight: 500; color: var(--muted);
+  top: 50%; transform: translateY(-50%); white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.g-sec .cbadge { font-weight: 400; }
+
+.g-row { display: flex; position: relative; z-index: 1; height: 27px; }
+.g-row[data-tip] { cursor: help; }
+.g-row[data-tip]:hover { background: color-mix(in srgb, var(--ink) 5%, transparent); }
+.g-row[data-tip]:hover .g-lcol { background: color-mix(in srgb, var(--ink) 7%, var(--surface)); }
+.g-row .g-lcol {
+  display: flex; align-items: center; gap: 8px; padding: 0 12px 0 20px;
+  font-size: 12.5px; color: var(--ink); overflow: hidden;
+}
+.g-row .g-lcol .tid {
+  font-weight: 700; font-size: 10.5px; color: var(--ink2); flex: none; width: 44px;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.g-row .g-lcol .tname { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.g-row.group-row { height: 34px; margin-top: 7px; border-top: 1px solid var(--border); }
+.g-row.group-row:first-child { margin-top: 0; }
+.g-row.group-row .g-lcol { font-size: 13.5px; font-weight: 750; }
+.g-row.group-row .g-lcol .tid { color: var(--muted); }
+.g-row:not(.group-row) .g-lcol .tid { width: 30px; }
+.g-row .g-lcol .chev {
+  flex: none; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border); border-radius: 6px; background: var(--surface);
+  color: var(--ink); font-size: 12px; line-height: 1; cursor: pointer;
+}
+.g-row .g-lcol .chev:hover { border-color: var(--ink); }
+.g-row .g-lcol .chev:empty { border-color: transparent; background: transparent; cursor: default; }
+.blkb {
+  flex: none; color: var(--ink); font-weight: 800; font-size: 9px;
+  text-transform: uppercase; letter-spacing: .06em;
+  border: 1px solid var(--ink); border-radius: 4px; padding: 0 4px;
+}
+.cbadge { flex: none; font-size: 10.5px; color: var(--ink2); }
+.clashb { flex: none; color: var(--factd); font-weight: 700; }
+
+.bar {
+  position: absolute; top: 50%; transform: translateY(-50%); height: 15px;
+  border-radius: 4px; cursor: default; min-width: 8px;
+}
+.bar:hover, .bar:focus-visible { filter: brightness(1.08); }
+.bar:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.bar.blocking { outline: 2px solid var(--ink); outline-offset: 1.5px; }
+.bar.clash { outline: 2.5px dashed var(--factd); outline-offset: 1.5px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .bar { transition: filter .12s ease; }
+}
+
+/* tooltip / панель блока */
+/* Карточка блока во весь фрейм ганта: при клике читателю нужен не тултип, а
+   рабочее место — сроки крупно, полоса блока в контексте сезона, суть слева,
+   работа справа. Классы внутри (fwrap/owrap/dwrap/cwrap) те же, что в тултипе,
+   поэтому обработчики сохранения полей и комментариев работают без правок. */
+.g-frame { position: relative; }
+#sheet {
+  position: absolute; inset: 0; z-index: 30; overflow: auto;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.18);
+}
+.sh-head {
+  display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap;
+  padding: 18px 22px 14px; border-bottom: 1px solid var(--border);
+}
+.sh-id { font: 600 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; color: var(--muted); }
+.sh-title { font-size: 23px; font-weight: 750; letter-spacing: -.02em; line-height: 1.15; margin-top: 1px; }
+.sh-badge {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
+  padding: 3px 7px; border-radius: 5px; border: 1px solid var(--border); color: var(--ink2); align-self: center;
+}
+.sh-badge.clash { color: var(--factd); border-color: var(--factd); }
+.sh-close {
+  margin-left: auto; background: none; border: 1px solid var(--border); border-radius: 8px;
+  width: 32px; height: 32px; line-height: 1; font-size: 20px; cursor: pointer; color: var(--ink2);
+  display: flex; align-items: center; justify-content: center; flex: none;
+}
+.sh-close:hover { background: var(--factd); border-color: var(--factd); color: var(--surface); }
+.sh-track { padding: 16px 22px 4px; }
+.sh-rail { position: relative; height: 34px; }
+.sh-rail .sh-line { position: absolute; left: 0; right: 0; top: 18px; height: 2px; background: var(--grid); }
+.sh-rail .sh-t0 { position: absolute; top: 12px; bottom: 12px; width: 2px; background: var(--startline); opacity: .5; }
+.sh-rail .sh-bar { position: absolute; top: 11px; height: 16px; border-radius: 5px; min-width: 8px; }
+.sh-rail { height: 46px; }
+.sh-rail .sh-cap { position: absolute; top: 0; font-size: 10.5px; color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
+.sh-rail .sh-cap.edge { transform: none; }
+.sh-rail .sh-cap.right { text-align: right; }
+.sh-rail .sh-fact-tick { position: absolute; top: 9px; width: 3px; height: 20px; border-radius: 2px; background: var(--factd); }
+.sh-rail .sh-barcap {
+  position: absolute; top: 30px; transform: translateX(-50%);
+  font-size: 11px; font-weight: 650; color: var(--ink2); white-space: nowrap;
+}
+.sh-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin: 14px 0 0; }
+.sh-stat { background: var(--surface); padding: 12px 22px 14px; }
+.sh-stat:first-child { padding-left: 22px; }
+.sh-k { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+.sh-v { font-size: 20px; font-weight: 700; margin-top: 3px; letter-spacing: -.01em; }
+.sh-v.mini { font-size: 15px; font-weight: 650; line-height: 1.25; }
+.sh-sub { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+.sh-delta { display: inline-block; font-size: 19px; font-weight: 700; padding: 2px 10px; border-radius: 8px; letter-spacing: -.01em; }
+.sh-delta.late { background: color-mix(in srgb, var(--factd) 14%, transparent); color: color-mix(in srgb, var(--factd) 72%, var(--ink)); }
+.sh-delta.early { background: color-mix(in srgb, var(--c-com) 18%, transparent); color: var(--c-com); }
+.sh-delta.ontime { background: color-mix(in srgb, var(--ink) 10%, transparent); }
+.sh-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; }
+.sh-col { padding: 18px 22px 22px; min-width: 0; }
+.sh-col + .sh-col { border-left: 1px solid var(--border); }
+.sh-h { font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 6px; }
+.sh-sec + .sh-sec { margin-top: 18px; }
+.sh-kids { display: flex; flex-direction: column; gap: 4px; }
+.sh-kid { display: flex; align-items: baseline; gap: 8px; font-size: 12.5px; padding: 5px 8px; border-radius: 6px; background: var(--page); }
+.sh-kid .sh-kid-id { font: 600 10.5px ui-monospace, Menlo, monospace; color: var(--muted); }
+.sh-kid .sh-kid-t { margin-left: auto; font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+.sh-none { font-size: 12.5px; color: var(--muted); }
+@media (max-width: 900px) { .sh-body { grid-template-columns: 1fr; } .sh-col + .sh-col { border-left: 0; border-top: 1px solid var(--border); } .sh-stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* Внутренности карточки: тултипные стили рассчитаны на тёмную подложку, здесь
+   подложка светлая (--surface), поэтому поля/чипы/кнопки переопределяются. */
+#sheet .fwrap, #sheet .owrap, #sheet .dwrap, #sheet .cwrap { border-top: 0; margin-top: 0; padding-top: 0; }
+#sheet .fwrap > b, #sheet .owrap > b, #sheet .dwrap > b, #sheet .cwrap > b {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); opacity: 1;
+}
+#sheet textarea, #sheet select {
+  background: var(--page); color: var(--ink); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; font: inherit; font-size: 13px; width: 100%;
+}
+#sheet textarea { min-height: 76px; }
+#sheet textarea::placeholder { color: var(--muted); }
+#sheet .ochip {
+  background: var(--page); color: var(--ink2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 4px 10px; font-size: 12px; cursor: pointer;
+}
+#sheet .ochip.on { background: var(--ink); color: var(--page); border-color: var(--ink); }
+#sheet .fsave, #sheet .cadd, #sheet .dadd, #sheet .t-addchild {
+  background: var(--ink); color: var(--page); border: 0; border-radius: 8px;
+  padding: 7px 14px; font-size: 12.5px; cursor: pointer; margin-top: 8px;
+}
+#sheet .dreset { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; font-size: 12px; cursor: pointer; color: var(--ink2); }
+#sheet .t-del { margin-left: auto;
+  background: none; color: var(--factd); border: 1px solid var(--factd);
+  border-radius: 8px; padding: 7px 14px; font-size: 12.5px; cursor: pointer; margin-top: 8px;
+}
+#sheet .dchip { background: var(--page); border: 1px solid var(--border); color: var(--ink); border-radius: 999px; padding: 3px 9px; font-size: 12px; }
+#sheet .dnone, #sheet .cmt-none, #sheet .chint { color: var(--muted); font-size: 12px; }
+#sheet .cmt {
+  display: grid; grid-template-columns: 1fr auto; align-items: start; column-gap: 10px;
+  background: var(--page); border-radius: 8px; padding: 7px 10px; font-size: 12.5px;
+  margin-bottom: 5px; color: var(--ink);
+}
+#sheet .cmt .cmt-del { justify-self: end; opacity: .55; font-size: 14px; line-height: 1.2; }
+#sheet .cmt .cmt-del:hover { opacity: 1; color: var(--factd); }
+#sheet .cmt-ts { display: block; font-size: 11px; margin-bottom: 2px; }
+#sheet .cmt-body { min-width: 0; }
+#sheet .cwrap .cmt-list { max-height: 260px; overflow-y: auto; margin-bottom: 8px; }
+#sheet .cmt-ts, #sheet .cmt-user { color: var(--ink2); }
+#sheet .t-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
+/* карточка растёт по содержимому: комментарии и действия уходили под скролл */
+#sheet { inset: 0 0 auto 0; min-height: 100%; }
+
+/* Карточка блока: сверху — что это, дальше три показателя в ряд (их читают
+   первым делом), потом факт прошлого сезона плашкой и уже затем проза.
+   Раньше всё шло одним списком «лейбл: текст» и читалось как стена. */
+.tip {
+  position: fixed; z-index: 60; width: 420px; max-width: 92vw; pointer-events: none;
+  background: var(--ink); color: var(--page);
+  border-radius: 10px; padding: 0; font-size: 12.5px; line-height: 1.45;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3); display: none; overflow: hidden;
+}
+.tip.pinned { pointer-events: auto; width: 460px; }
+.tip .t-head {
+  display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+  padding: 11px 13px 9px; border-bottom: 1px solid var(--tip-sep);
+}
+.tip .t-id { font: 600 10.5px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .04em; opacity: var(--tip-mut); }
+.tip .t-title { font-size: 14px; font-weight: 700; letter-spacing: -.01em; }
+.tip .t-badge {
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
+  padding: 2px 6px; border-radius: 4px; border: 1px solid currentColor; opacity: .9;
+}
+.tip .t-badge.clash { color: var(--tip-late-fg); }
+.tip .t-stats { display: flex; gap: 1px; background: var(--tip-sep); }
+.tip .t-stat { flex: 1; background: var(--ink); padding: 8px 13px 9px; min-width: 0; }
+.tip .t-stat:last-child { flex: 1.5; }   /* колонка функций длиннее дат */
+.tip .t-k { font-size: 9.5px; text-transform: uppercase; letter-spacing: .07em; opacity: var(--tip-mut); }
+.tip .t-v { font-size: 14.5px; font-weight: 700; margin-top: 2px; white-space: nowrap; }
+.tip .t-v.small { font-size: 13px; white-space: normal; line-height: 1.25; }
+.tip .t-sub { font-size: 11px; opacity: var(--tip-mut); }
+.tip .t-odot, #sheet .t-odot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+.tip .t-odot { outline: 1px solid currentColor; outline-offset: 1px; }
+#sheet .t-odot { display: inline-block; margin-right: 5px; vertical-align: 0; }
+.tip .t-own { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+.tip .t-v.small { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
+.tip .t-fact {
+  display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+  padding: 7px 13px; font-size: 11.5px; background: var(--tip-flat);
+  border-top: 1px solid var(--tip-sep);
+}
+.tip .t-fact .t-fk { opacity: var(--tip-mut); }
+.tip .t-fact .t-delta { font-weight: 700; padding: 1px 6px; border-radius: 4px; }
+.tip .t-fact .t-delta.late { background: var(--tip-late-bg); color: var(--tip-late-fg); }
+.tip .t-fact .t-delta.early { background: var(--tip-early-bg); color: var(--tip-early-fg); }
+.tip .t-fact .t-delta.ontime { background: var(--tip-flat); }
+.tip .t-body { padding: 10px 13px 12px; }
+.tip .t-sec + .t-sec { margin-top: 9px; }
+.tip .t-h { font-size: 9.5px; text-transform: uppercase; letter-spacing: .07em; opacity: var(--tip-mut); margin-bottom: 2px; }
+.tip .t-b { opacity: .92; }
+.tip .t-warn { margin-top: 9px; color: var(--tip-late-fg); }
+.tip .t-hint { margin-top: 9px; font-size: 11px; opacity: var(--tip-hint); }
+.tip .t-close {
+  position: absolute; top: 5px; right: 7px; background: none; border: 0;
+  color: var(--page); opacity: .7; font-size: 16px; cursor: pointer; line-height: 1; padding: 2px;
+}
+.tip .t-close:hover { opacity: 1; }
+
+.fwrap { margin-top: 8px; border-top: 1px solid rgba(255,255,255,.25); padding-top: 6px; }
+.fwrap > b { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; opacity: .8; display: block; }
+.fwrap textarea {
+  width: 100%; margin-top: 4px; background: rgba(255,255,255,.12); color: var(--page);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 6px; padding: 5px 7px;
+  font: 12.5px/1.4 system-ui, sans-serif; resize: vertical;
+}
+.fwrap .fsave {
+  margin-top: 5px; background: var(--page); color: var(--ink); border: 0; border-radius: 6px;
+  padding: 4px 12px; font: 600 12px system-ui, sans-serif; cursor: pointer;
+}
+.cwrap { margin-top: 8px; border-top: 1px solid rgba(255,255,255,.25); padding-top: 6px; }
+.cwrap > b { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; opacity: .8; }
+.cmt { margin: 4px 0; }
+.cmt-ts { opacity: .6; font-size: 11px; font-variant-numeric: tabular-nums; }
+.cmt-user { opacity: .85; font-size: 11.5px; }
+.cmt-del { cursor: pointer; opacity: .6; padding: 0 4px; }
+.cmt-del:hover { opacity: 1; }
+.cmt-none { opacity: .6; margin: 3px 0; }
+.cwrap textarea {
+  width: 100%; margin-top: 5px; background: rgba(255,255,255,.12); color: var(--page);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 6px; padding: 5px 7px;
+  font: 12.5px/1.4 system-ui, sans-serif; resize: vertical;
+}
+.cwrap .cadd {
+  margin-top: 5px; background: var(--page); color: var(--ink); border: 0; border-radius: 6px;
+  padding: 4px 12px; font: 600 12px system-ui, sans-serif; cursor: pointer;
+}
+.chint { opacity: .55; font-size: 10.5px; margin-top: 5px; }
+.dwrap { margin-top: 8px; border-top: 1px solid rgba(255,255,255,.25); padding-top: 6px; }
+.dwrap > b { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; opacity: .8; }
+.dchip {
+  display: inline-flex; align-items: center; gap: 4px; margin: 3px 4px 0 0;
+  background: rgba(255,255,255,.14); border-radius: 5px; padding: 1px 7px; font-size: 12px;
+}
+.ddel { cursor: pointer; opacity: .6; }
+.ddel:hover { opacity: 1; }
+.drow { display: flex; gap: 6px; margin-top: 6px; align-items: center; }
+.drow select {
+  flex: 1; background: rgba(255,255,255,.12); color: var(--page);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 6px; padding: 3px 6px; font: 12px system-ui, sans-serif;
+}
+.drow select option { color: #111; background: #fff; }
+.dadd, .dreset {
+  background: var(--page); color: var(--ink); border: 0; border-radius: 6px;
+  padding: 3px 10px; font: 600 12px system-ui, sans-serif; cursor: pointer;
+}
+.dreset { background: transparent; color: var(--page); border: 1px solid rgba(255,255,255,.35); }
+.dnone { opacity: .6; margin: 3px 0; font-size: 12px; }
+.owrap { margin-top: 8px; border-top: 1px solid rgba(255,255,255,.25); padding-top: 6px; }
+.owrap > b { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; opacity: .8; }
+.ochip {
+  display: inline-flex; align-items: center; gap: 5px; margin: 4px 4px 0 0;
+  background: rgba(255,255,255,.10); color: var(--page); border: 1px solid rgba(255,255,255,.3);
+  border-radius: 6px; padding: 2px 8px; font: 11.5px system-ui, sans-serif; cursor: pointer;
+}
+.ochip.on { background: var(--page); color: var(--ink); border-color: var(--page); font-weight: 600; }
+.odot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.t-actions { margin-top: 8px; display: flex; gap: 8px; }
+.t-addchild { background: var(--page); color: var(--ink); border: 0; border-radius: 6px; padding: 3px 10px; font: 600 11.5px system-ui, sans-serif; cursor: pointer; }
+.t-del { background: none; color: #ff9c9c; border: 1px solid rgba(255,120,120,.5); border-radius: 6px; padding: 3px 10px; font: 600 11.5px system-ui, sans-serif; cursor: pointer; }
+.t-del:hover { background: rgba(255,120,120,.15); }
+
+/* ---------- ретро сезонов ---------- */
+h2 {
+  font-size: 19px; font-weight: 700; letter-spacing: -.01em;
+  margin: 36px 0 12px;
+}
+.retro {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 18px; margin-bottom: 14px;
+}
+.retro h3 { margin: 0 0 10px; font-size: 15px; }
+.retro .rgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 10px; }
+.retro .rfield .blk-h { margin-bottom: 4px; }
+.retro .rval {
+  font-size: 13px; color: var(--ink2); white-space: pre-wrap; min-height: 40px;
+  border-radius: 4px; outline: none;
+}
+.retro .rval:hover { box-shadow: inset 0 0 0 1px var(--grid); }
+.retro .rval:focus { box-shadow: inset 0 0 0 2px var(--ink); color: var(--ink); }
+.retro .rval:empty::before { content: attr(data-ph); color: var(--muted); font-style: italic; }
+.fb-item { border-top: 1px solid var(--grid); padding: 9px 0; font-size: 13px; }
+.fb-item:first-child { border-top: none; }
+.fb-tag { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; border-radius: 4px; padding: 1px 6px; margin-right: 7px; vertical-align: 1px; }
+.fb-tag.ok { color: var(--c-com); border: 1px solid var(--c-com); }
+.fb-tag.notok { color: var(--factd); border: 1px solid var(--factd); }
+.fb-what { color: var(--ink); }
+.fb-prop { color: var(--ink2); margin-top: 3px; }
+.fb-prop b { color: var(--ink); font-weight: 600; }
+.fb-meta { color: var(--muted); font-size: 11.5px; margin-top: 3px; font-variant-numeric: tabular-nums; }
+.fb-del { cursor: pointer; color: var(--muted); padding: 0 4px; }
+.fb-del:hover { color: var(--factd); }
+.fb-none { color: var(--muted); font-style: italic; font-size: 13px; padding: 6px 0; }
+.fb-form { border-top: 1px solid var(--grid); margin-top: 8px; padding-top: 10px; display: grid; gap: 7px; }
+.fb-form select, .fb-form textarea {
+  width: 100%; background: var(--page); color: var(--ink); border: 1px solid var(--grid);
+  border-radius: 7px; padding: 5px 9px; font: 13px/1.4 system-ui, sans-serif; resize: vertical;
+}
+.fb-form select.fb-kind { width: auto; justify-self: start; }
+.fb-form textarea.fb-what-in, .fb-form textarea.fb-prop-in { min-height: 34px; }
+.fb-form textarea.miss { border-color: var(--factd); }
+.fb-form .fb-req { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+.fb-form .fb-req i { font-style: normal; color: var(--factd); }
+.fb-add { justify-self: start; background: var(--ink); color: var(--page); border: 0; border-radius: 7px; padding: 5px 14px; font: 600 12.5px system-ui, sans-serif; cursor: pointer; }
+
+/* ---------- таблица-справочник ---------- */
+details { margin-top: 14px; }
+summary {
+  cursor: pointer; font-weight: 600; font-size: 14px; color: var(--ink);
+  padding: 8px 0;
+}
+summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.tbl-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; min-width: 900px; font-size: 12.5px; }
+th, td { text-align: left; padding: 7px 12px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th {
+  font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink2); white-space: nowrap;
+}
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.sec-row td { font-weight: 700; background: color-mix(in srgb, var(--grid) 35%, var(--surface)); }
+.tdesc { color: var(--ink2); font-size: 12px; font-weight: 400; margin-top: 2px; max-width: 46em; }
+.tdesc b { color: var(--ink); font-weight: 600; }
+
+
+/* форма нового блока */
+#rolesmodal { position: fixed; inset: 0; z-index: 91; background: rgba(12,16,22,.55); display: flex; align-items: flex-start; justify-content: center; overflow: auto; padding: 5vh 16px; }
+#rolesmodal[hidden] { display: none; }
+.rm-row { display: flex; gap: 8px; align-items: center; margin: 6px 0; }
+.rm-row input[type="text"] { flex: 1; margin-top: 0; }
+.rm-sw { width: 18px; height: 18px; border-radius: 5px; flex: none; cursor: pointer; border: 2px solid transparent; }
+.rm-sw.on { border-color: #fff; }
+.rm-del { background: none; color: #ff9c9c; border: 1px solid rgba(255,120,120,.5); border-radius: 6px; padding: 2px 8px; font: 600 11px system-ui, sans-serif; cursor: pointer; }
+#rmPalette .rm-sw { display: inline-block; margin: 4px 6px 0 0; }
+.legend button#rolesBtn { border: 1px dashed var(--border); border-radius: 7px; background: var(--surface); color: var(--ink2); font: 600 12px system-ui, sans-serif; cursor: pointer; padding: 2px 10px; }
+.legend button#rolesBtn:hover { border-color: var(--ink); color: var(--ink); }
+
+#addmodal { position: fixed; inset: 0; z-index: 90; background: rgba(12,16,22,.55); display: flex; align-items: flex-start; justify-content: center; overflow: auto; padding: 5vh 16px; }
+#addmodal[hidden] { display: none; }
+.am-card { background: var(--ink); color: var(--page); border-radius: 10px; padding: 14px 16px; width: 430px; max-width: 100%; font-size: 12.5px; box-shadow: 0 10px 40px rgba(0,0,0,.4); color-scheme: dark; }
+.am-h { font-weight: 700; font-size: 14px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+.am-h button { background: none; border: 0; color: var(--page); opacity: .7; font-size: 17px; cursor: pointer; line-height: 1; }
+.am-h button:hover { opacity: 1; }
+.am-card label { display: block; margin-top: 8px; font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; opacity: .85; }
+.am-card input[type="text"], .am-card input[type="number"], .am-card select, .am-card textarea {
+  display: block; width: 100%; margin-top: 3px; background: rgba(255,255,255,.12); color: var(--page);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 6px; padding: 5px 7px;
+  font: 12.5px/1.4 system-ui, sans-serif; text-transform: none; letter-spacing: 0; resize: vertical;
+}
+.am-card select option { color: #111; background: #fff; }
+.am-2col { display: flex; gap: 8px; }
+.am-2col label { flex: 1; }
+.am-own { margin-top: 8px; }
+.am-own b { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; opacity: .85; font-weight: 400; }
+label.am-blk { display: flex; align-items: center; gap: 6px; text-transform: none; letter-spacing: 0; font-size: 12.5px; opacity: 1; }
+.am-blk input { width: auto; margin: 0; }
+.am-foot { display: flex; gap: 10px; align-items: center; margin-top: 12px; }
+.am-foot button { background: var(--page); color: var(--ink); border: 0; border-radius: 6px; padding: 5px 14px; font: 600 12.5px system-ui, sans-serif; cursor: pointer; }
+#amErr { color: #ff9c9c; font-size: 12px; }
+
+/* аннотации к тексту */
+::highlight(spb-anno) { background: rgba(255,213,79,.55); }
+#annoBtn { position: absolute; z-index: 60; display: none; background: var(--ink); color: var(--page); border: 0; border-radius: 7px; padding: 5px 12px; font: 600 12px system-ui, sans-serif; cursor: pointer; box-shadow: 0 3px 12px rgba(0,0,0,.25); }
+#annoForm { position: absolute; z-index: 60; display: none; width: 320px; background: var(--ink); color: var(--page); border-radius: 9px; padding: 10px 12px; box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+#annoForm .af-quote { font-size: 11px; opacity: .75; margin-bottom: 6px; border-left: 2px solid rgba(255,213,79,.8); padding-left: 7px; }
+#annoForm textarea { width: 100%; background: rgba(255,255,255,.12); color: var(--page); border: 1px solid rgba(255,255,255,.25); border-radius: 6px; padding: 5px 7px; font: 12.5px/1.4 system-ui, sans-serif; resize: vertical; }
+#annoForm .af-row { display: flex; gap: 8px; margin-top: 7px; }
+#annoForm button { background: var(--page); color: var(--ink); border: 0; border-radius: 6px; padding: 4px 12px; font: 600 12px system-ui, sans-serif; cursor: pointer; }
+#annoForm .af-cancel { background: transparent; color: var(--page); border: 1px solid rgba(255,255,255,.35); }
+#annoForm .af-save { background: var(--page); color: var(--ink); }
+#annoPop { position: absolute; z-index: 61; display: none; width: 300px; background: var(--ink); color: var(--page); border-radius: 9px; padding: 8px 12px; font-size: 12.5px; box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+.ap-item + .ap-item { border-top: 1px solid rgba(255,255,255,.2); margin-top: 7px; padding-top: 7px; }
+.ap-quote { font-size: 11px; opacity: .7; border-left: 2px solid rgba(255,213,79,.8); padding-left: 7px; margin: 3px 0; }
+.ap-text { margin: 4px 0; }
+.ap-meta { font-size: 11px; opacity: .65; }
+.ap-del, .an-go { cursor: pointer; text-decoration: underline; color: #ffd54f; }
+#annoPanel { position: fixed; right: 18px; top: 70px; bottom: 24px; width: 330px; overflow-y: auto; z-index: 55; background: var(--ink); color: var(--page); border-radius: 10px; padding: 10px 14px; font-size: 12.5px; box-shadow: 0 10px 40px rgba(0,0,0,.4); }
+#annoPanel .an-h { font-weight: 700; display: flex; justify-content: space-between; margin-bottom: 6px; }
+#annoPanel .an-h button { background: none; border: 0; color: var(--page); font-size: 16px; cursor: pointer; opacity: .7; }
+#annoPanel .an-item { border-top: 1px solid rgba(255,255,255,.15); padding: 7px 0; }
+#annoPanel .an-item.orphan { opacity: .55; }
+#annoPanel .an-none { opacity: .65; padding: 8px 0; }
+#localWarn { background: #fff3cd; border: 1px solid #e0a800; color: #6b5200; border-radius: 9px; padding: 10px 14px; margin-bottom: 16px; font-size: 13px; line-height: 1.5; }
+</style>
+
+<div class="page">
+  <p class="eyebrow">Промо · рабочий инструмент</p>
+  <h1>Промо-планнер</h1>
+
+  <div class="tabs" role="tablist" id="tabs"></div>
+
+  <div id="view-about" class="view">
+  <p class="meta">Нормативный флоу запуска промо. Шкала — <b>T-минус</b>: T−30 значит «за 30 дней до старта промо», T+7 — «через 7 дней после старта». Сценарий определяет полный набор этапов и нормативные сроки.</p>
+  <div class="introcard">
+    <div class="blk-h">Что такое сезон и зачем он компании</div>
+    <div id="intro" contenteditable="true" data-ph="Место для вводной части — пишет владелец сезонного ОКР (Настя): что такое сезон, зачем он нужен бизнесу, как компания к нему подходит."></div>
+  </div>
+  </div>
+
+  <div id="view-gantt" class="view on">
+  <div class="seasonbar">
+    <b>Текущее промо:</b>
+    <label>сценарий <select id="scenarioSelect"><option value="standard">Стандарт</option><option value="ooh">С наружкой</option><option value="tv_ooh">ТВ + наружка</option></select></label>
+    <label>название <input id="seasonName" type="text"></label>
+    <label>дата старта (T−0) <input id="seasonStart" type="date"></label>
+    <label>дата окончания <input id="seasonEnd" type="date"></label>
+    <span class="hint">смена даты старта переносит весь нормативный план; сценарий выбирает соответствующий флоу из исходной таблицы</span>
+  </div>
+
+  <div class="legend" role="list">
+    <span id="legendFns"></span>
+    <button type="button" id="rolesBtn" class="li" title="добавить функцию, поменять название или цвет">+ функция</button>
+    <span class="li"><span class="sw-blk"></span><span>блокирует другие функции</span></span>
+    <span class="li"><b style="color:var(--factd);font-weight:800">!</b><span>— старт раньше конца зависимости</span></span>
+  </div>
+
+  <div id="fnnote" hidden></div>
+  <div class="gtools">
+    <button id="btnAdd">+ Новый блок</button>
+    <button id="btnAnno">Комментарии</button>
+    <a id="histLink" href="#" hidden>История изменений</a>
+    <button id="btnFaq">FAQ</button>
+    <span id="toolmsg"></span>
+  </div>
+  <div id="faqPanel" hidden>
+    <ul>
+      <li><b>Сроки:</b> потяни полосу за край — изменишь срок, за середину — сдвинешь целиком. Всё сохраняется сразу.</li>
+      <li><b>Блокирующие блоки</b> (бейдж «блок») не сдвигаются под другие: их срыв двигает весь сезон.</li>
+      <li><b>Карточка блока:</b> клик по строке закрепляет карточку — там образ результата, правила, ответственные, комментарии и строка «план → факт» прошлого сезона.</li>
+      <li><b>Подзадачи:</b> «+ Новый блок» → «Куда» — внутрь любого блока или задачи; раскрываются стрелкой ▸. Подзадача всегда лежит внутри сроков своего блока.</li>
+      <li><b>Фильтр:</b> клик по функции в легенде — только её блоки и задачи; повторный клик — вернуть всё.</li>
+      <li><b>Функции:</b> «+ функция» в легенде — добавить, переименовать, перекрасить.</li>
+      <li><b>Порядок строк:</b> блоки идут по сроку начала, а номер PB.x — постоянный идентификатор блока, а не его место в списке.</li>
+      <li><b>Удаление:</b> кнопка в карточке блока; подзадачи переезжают уровнем выше, всё восстановимо через «Историю изменений».</li>
+    </ul>
+  </div>
+
+  <div id="annoPanel" style="display:none"></div>
+
+  <div id="addmodal" hidden>
+    <div class="am-card">
+      <div class="am-h">Новый блок <button id="amClose" aria-label="Закрыть">×</button></div>
+      <label>Название *<input id="amName" type="text" placeholder="Что делаем"></label>
+      <label>Куда *<select id="amSec"></select></label>
+      <div class="am-2col">
+        <label>Закрыт к T− (дней до старта) *<input id="amT" type="number" placeholder="30"></label>
+        <label>Длительность, дней *<input id="amDur" type="number" placeholder="14"></label>
+      </div>
+      <div class="am-own"><b>Ответственные * (клик — включить/выключить)</b><div id="amOwn"></div></div>
+      <label>Зависит от — id через запятую<input id="amDep" type="text" placeholder="PB.2, PB.8"></label>
+      <label>Образ результата — что остаётся и где лежит<textarea id="amRes" rows="2"></textarea></label>
+      <label>Правила и критерии<textarea id="amRules" rows="2"></textarea></label>
+      <label class="am-blk"><input id="amBlk" type="checkbox"> блокирующий блок</label>
+      <div class="am-foot"><button id="amCreate">Создать</button><span id="amErr"></span></div>
+    </div>
+  </div>
+
+  <div id="rolesmodal" hidden>
+    <div class="am-card">
+      <div class="am-h">Функции-ответственные <button id="rmClose" aria-label="Закрыть">×</button></div>
+      <p style="font-size:11.5px;opacity:.8;margin:2px 0 6px">Название и цвет можно менять у любой функции; удалять — только добавленные и без назначенных задач.</p>
+      <div id="rmList"></div>
+      <label>Новая функция<input id="rmName" type="text" placeholder="например, PR или Логистика"></label>
+      <div class="am-own"><b>Цвет</b><div id="rmPalette"></div></div>
+      <div class="am-foot"><button id="rmCreate">Добавить</button><span id="rmErr"></span></div>
+    </div>
+  </div>
+
+  <div class="g-frame">
+    <div class="g-scroll" data-scroll-ok>
+      <div class="g-inner" id="gantt"></div>
+    </div>
+    <div id="sheet" hidden></div>
+  </div>
+
+  <details>
+    <summary>Таблица: все блоки со сроками, ответственными и правилами</summary>
+    <div class="tbl-wrap"><table id="tbl">
+      <thead><tr><th>ID</th><th>Блок</th><th>Закрыт к</th><th>Начало</th><th>Ответственный</th><th>Зависит от</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </details>
+  </div>
+
+  <div id="view-feedback" class="view">
+  <h2>Прошлые сезоны: фидбек и выводы</h2>
+  <div id="retro"></div>
+  </div>
+
+
+</div>
+
+<script>
+// ФОРК движка amp-roadmap (assortment-management-platform/roadmap.html) под плейбук сезона.
+// Ось календарная внутри (T0v..T1v), наружу — T-минус: блоки хранятся смещениями в днях
+// от старта сезона, дата старта пересчитывает подписи шкалы. Ключи хранилища — spb-*
+// (у артефактов хаба общий origin: чужой префикс затёр бы amp-roadmap).
+
+const DAY = 86400e3;
+const OFF_MIN = -120;
+
+// --- сезон: дата старта (T−0) и последний день. Блоки внутри сезона и после него
+// привязаны к КОНЦУ сезона (поле anchor), поэтому шаблон растягивается под любую
+// длину: у школьного сезона 37 дней, у Q4 с 11.11 и Новым годом — вдвое больше.
+let SEASON = {name: 'Новое промо', start: '2026-10-01', end: '2026-10-14'};
+let SCENARIO = localStorage.getItem('promo-scenario') || 'standard';
+try {
+  const s = JSON.parse(localStorage.getItem('spb-season') || 'null');
+  if (s && s.start) SEASON = Object.assign({end: SEASON.end}, s);
+} catch (e) {}
+
+const startMs = () => Date.parse(SEASON.start);
+// длина сезона в днях; страховка на случай пустой/сломанной даты конца
+const seasonLen = () => {
+  const n = Math.round((Date.parse(SEASON.end) - startMs()) / DAY);
+  return isFinite(n) && n >= 7 ? n : 37;
+};
+const OFF_MAX = () => seasonLen() + 35;
+const T0 = () => startMs() + OFF_MIN * DAY;
+const T1 = () => startMs() + OFF_MAX() * DAY;
+const offToIso = off => new Date(startMs() + off * DAY).toISOString().slice(0, 10);
+const isoToOff = d => Math.round((Date.parse(d) - startMs()) / DAY);
+const pct = d => (Date.parse(d) - T0()) / (T1() - T0()) * 100;
+const pctOff = off => (off - OFF_MIN) / (OFF_MAX() - OFF_MIN) * 100;
+const fmt = d => { const x = new Date(d); return String(x.getDate()).padStart(2,'0') + '.' + String(x.getMonth()+1).padStart(2,'0'); };
+const fmtT = off => off < 0 ? 'T−' + (-off) : off === 0 ? 'T−0' : 'T+' + off;
+const fmtTd = d => fmtT(isoToOff(d));
+
+const BUILTIN_ROLES = {"r1":"Промо","r2":"Бренд","r3":"Студия","r4":"CMO","r5":"SMM","r6":"CRM","r7":"Коммерция","r8":"B2B Marketing","r9":"Legal","r10":"Финком","r11":"PR","r12":"Офлайн маркетинг","r13":"КМ"};
+const BUILTIN_RC = {"r1":"#2a78d6","r2":"#1baf7a","r3":"#eb6834","r4":"#d9a013","r5":"#e87ba4","r6":"#0e8f8f","r7":"#8a5a2b","r8":"#c23b3b","r9":"#5f7d2f","r10":"#7a4fd1","r11":"#3b7f8e","r12":"#00897b","r13":"#f4511e"};
+// палитра кастомных функций — читаема в обеих темах
+const ROLE_PALETTE = ['#2a78d6', '#1baf7a', '#eb6834', '#d9a013', '#4a3aa7', '#e87ba4',
+                      '#0e8f8f', '#8a5a2b', '#c23b3b', '#5f7d2f', '#7a4fd1', '#3b7f8e'];
+// правки/добавления ролей: ключ на роль (spb-role:<id>), LWW не пересекает роли
+const ROLE_OVR = {};
+try {
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.indexOf('spb-role:') === 0) ROLE_OVR[k.slice('spb-role:'.length)] = JSON.parse(localStorage.getItem(k));
+  }
+} catch (e) {}
+const saveRole = id => { try { localStorage.setItem('spb-role:' + id, JSON.stringify(ROLE_OVR[id])); } catch (e) {} };
+const roleIds = () => {
+  const ids = Object.keys(BUILTIN_ROLES);
+  for (const id of Object.keys(ROLE_OVR)) if (!ids.includes(id) && !ROLE_OVR[id].del) ids.push(id);
+  return ids.filter(id => !(ROLE_OVR[id] && ROLE_OVR[id].del));
+};
+const roleName = id => (ROLE_OVR[id] && ROLE_OVR[id].name) || BUILTIN_ROLES[id] || id;
+const roleColor = id => (ROLE_OVR[id] && ROLE_OVR[id].color) || BUILTIN_RC[id] || 'var(--muted)';
+// совместимость по коду: ROLES/RC как динамические прокси
+const ROLES = new Proxy({}, {get: (_, k) => roleName(k), ownKeys: () => roleIds(),
+  getOwnPropertyDescriptor: () => ({enumerable: true, configurable: true}),
+  has: (_, k) => roleIds().includes(k)});
+const RC = new Proxy({}, {get: (_, k) => roleColor(k)});
+
+// --- данные: блоки компании (T-смещения: oe = закрыт к, os = начало работ) ---
+// Сиды — Back to School 2026 (сезон 01.08–07.09, T−0 = 01.08): плановые сроки из
+// тайминг-файла OKR (таблица «OKR season cohort boost»), факты и правила — из
+// транскриптов синков июль–сентябрь 2026.
+const SCENARIOS = {"standard":{"label":"Стандарт","blocks":[{"id":"standard-G01","name":"Подготовка","os":-60,"oe":-45,"r":"r1","own":["r1","r2"]},{"id":"standard-G02","name":"Концепция большого сезона","os":-60,"oe":-15,"r":"r1","own":["r1","r2","r3","r4"]},{"id":"standard-G03","name":"Контент и коммуникации","os":-30,"oe":0,"r":"r2","own":["r2","r5","r3","r6"]},{"id":"standard-G04","name":"In-App","os":-17,"oe":0,"r":"r2","own":["r2","r1"]},{"id":"standard-G05","name":"Подготовка лендинга","os":-53,"oe":0,"r":"r1","own":["r1","r7","r3"]},{"id":"standard-G06","name":"Заведение акции и сбор Х и СХ","os":-14,"oe":0,"r":"r7","own":["r7","r1","r3"]},{"id":"standard-G07","name":"Глобал/Joom","os":-22,"oe":0,"r":"r1","own":["r1","r2","r3"]},{"id":"standard-G08","name":"Стрим Селлеры + ПВЗ","os":-32,"oe":0,"r":"r8","own":["r8"]},{"id":"standard-G09","name":"Юридические тексты","os":-15,"oe":-12,"r":"r2","own":["r2","r9"]},{"id":"standard-G10","name":"Поддержка от финкома (банк)","os":-15,"oe":-13,"r":"r2","own":["r2","r10","r11","r1"]},{"id":"standard-G11","name":"Аналитика","os":-1,"oe":44,"r":"r1","own":["r1"]}],"tasks":[{"parent":"standard-G01","t":{"id":"standard-G01-T01","name":"Создать группу","os":-60,"oe":-60,"r":"r1","result":"Владелец: Промо · Норматив: T−60","own":["r1"]}},{"parent":"standard-G01","t":{"id":"standard-G01-T02","name":"Таймлайн проекта","os":-58,"oe":-58,"r":"r1","result":"Владелец: Промо · Норматив: T−58","own":["r1"]}},{"parent":"standard-G01","t":{"id":"standard-G01-T03","name":"Назначены регулярные встречи Промо–Бренд–Студия","os":-58,"oe":-58,"r":"r1","result":"Владелец: Промо · Норматив: T−58","own":["r1"]}},{"parent":"standard-G01","t":{"id":"standard-G01-T04","name":"Назначены регулярные встречи Промо–Коммерция","os":-58,"oe":-58,"r":"r1","result":"Владелец: Промо · Норматив: T−58","own":["r1"]}},{"parent":"standard-G01","t":{"id":"standard-G01-T05","name":"Преданализ","os":-58,"oe":-58,"r":"r1","result":"Владелец: Промо · Норматив: T−58","own":["r1"]}},{"parent":"standard-G01","t":{"id":"standard-G01-T06","name":"Создан эпик в Jira","os":-55,"oe":-55,"r":"r1","result":"Владелец: Промо · Норматив: T−55","own":["r1"]}},{"parent":"standard-G01","t":{"id":"standard-G01-T07","name":"Заполнен календарь коммуникаций","os":-45,"oe":-45,"r":"r2","result":"Владелец: Бренд · Норматив: T−45","own":["r2"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T01","name":"Определена дата промо и первичная механика","os":-60,"oe":-60,"r":"r1","result":"Владелец: Промо · Норматив: T−60","own":["r1"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T02","name":"Финализирована механика","os":-55,"oe":-55,"r":"r1","result":"Владелец: Промо · Норматив: T−55","own":["r1"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T03","name":"Подготовлена CJM и план главной in-app","os":-53,"oe":-53,"r":"r1","result":"Владелец: Промо · Норматив: T−53","own":["r1"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T04","name":"Поставлен бриф Промо–Бренд","os":-51,"oe":-51,"r":"r1","result":"Владелец: Промо · Норматив: T−51","own":["r1"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T05","name":"Поставлен бриф Промо–КМ","os":-49,"oe":-49,"r":"r1","result":"Владелец: Промо · Норматив: T−49","own":["r1"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T06","name":"Поставлен бриф Бренд–Студия","os":-49,"oe":-47,"r":"r2","result":"Владелец: Бренд · Норматив: T−49 · 2 дн.","own":["r2"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T07","name":"Встреча с обратной связью по брифу Студия–Бренд","os":-45,"oe":-44,"r":"r3","result":"Владелец: Студия · Норматив: T−45 · 1 дн.","own":["r3"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T08","name":"Подготовлена матрица сообщений по бренду","os":-43,"oe":-41,"r":"r2","result":"Владелец: Бренд · Норматив: T−43 · 2 дн.","own":["r2"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T09","name":"Проведён общий кик-офф для Маркетинга","os":-40,"oe":-39,"r":"r2","result":"Владелец: Бренд · Норматив: T−40 · 1 дн.","own":["r2"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T10","name":"Подготовлены первые концепции","os":-31,"oe":-26,"r":"r3","result":"Владелец: Студия · Норматив: T−31 · 5 дн.","own":["r3"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T11","name":"Выбрана концепция","os":-29,"oe":-27,"r":"r2","result":"Владелец: Бренд · Норматив: T−29 · 2 дн.","own":["r2"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T12","name":"Концепция согласована CMO","os":-27,"oe":-25,"r":"r2","result":"Владелец: Бренд · Норматив: T−27 · 2 дн.","own":["r2"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T13","name":"Концепция согласована на SDB","os":-25,"oe":-23,"r":"r2","result":"Владелец: Бренд · Норматив: T−25 · 2 дн.","own":["r2"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T14","name":"Проведён брифинг смежных команд","os":-23,"oe":-21,"r":"r2","result":"Владелец: Бренд · Норматив: T−23 · 2 дн.","own":["r2"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T15","name":"Подготовлены первые КВ","os":-20,"oe":-15,"r":"r3","result":"Владелец: Студия · Норматив: T−20 · 5 дн.","own":["r3"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T16","name":"Обратная связь по КВ","os":-18,"oe":-15,"r":"r2","result":"Владелец: Бренд + Промо + CMO · Норматив: T−18 · 3 дн.","own":["r2","r1","r4"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T17","name":"Финальные КВ по правкам","os":-18,"oe":-15,"r":"r3","result":"Владелец: Студия · Норматив: T−18 · 3 дн.","own":["r3"]}},{"parent":"standard-G02","t":{"id":"standard-G02-T18","name":"Утверждён финальный кей-виж","os":-18,"oe":-16,"r":"r2","result":"Владелец: Бренд + CMO · Норматив: T−18 · 2 дн.","own":["r2","r4"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T01","name":"Поставлена задача / бриф на CRM","os":-30,"oe":-28,"r":"r2","result":"Владелец: Бренд · Норматив: T−30 · 2 дн.","own":["r2"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T02","name":"Поставлен бриф на SMM","os":-30,"oe":-28,"r":"r2","result":"Владелец: Бренд · Норматив: T−30 · 2 дн.","own":["r2"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T03","name":"Подготовлен коммуникационный план CRM","os":-20,"oe":-17,"r":"r2","result":"Владелец: Бренд · Норматив: T−20 · 3 дн.","own":["r2"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T04","name":"Подготовлен и согласован контент-план","os":-20,"oe":-18,"r":"r5","result":"Владелец: SMM · Норматив: T−20 · 2 дн.","own":["r5"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T05","name":"Подготовлены драфты канальных креативов","os":-15,"oe":-11,"r":"r2","result":"Владелец: Бренд · Норматив: T−15 · 4 дн.","own":["r2"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T06","name":"Согласован план по блогерам / посевам","os":-15,"oe":-13,"r":"r5","result":"Владелец: SMM · Норматив: T−15 · 2 дн.","own":["r5"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T07","name":"Согласованы сегменты и календарь запусков","os":-14,"oe":-12,"r":"r2","result":"Владелец: Бренд · Норматив: T−14 · 2 дн.","own":["r2"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T08","name":"Канальные креативы согласованы","os":-12,"oe":-10,"r":"r3","result":"Владелец: Студия · Норматив: T−12 · 2 дн.","own":["r3"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T09","name":"Создан финальный креатив","os":-8,"oe":-5,"r":"r3","result":"Владелец: Студия · Норматив: T−8 · 3 дн.","own":["r3"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T10","name":"Получены материалы, настроены коммуникации и проведён QA","os":-5,"oe":-3,"r":"r3","result":"Владелец: Студия · Норматив: T−5 · 2 дн.","own":["r3"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T11","name":"Готовы ресайзы","os":-5,"oe":-4,"r":"r3","result":"Владелец: Студия · Норматив: T−5 · 1 дн.","own":["r3"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T12","name":"Готовы финальные материалы и расписание публикаций","os":-5,"oe":-3,"r":"r2","result":"Владелец: Бренд · Норматив: T−5 · 2 дн.","own":["r2"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T13","name":"CRM-коммуникации запущены","os":0,"oe":0,"r":"r6","result":"Владелец: CRM · Норматив: T−0","own":["r6"]}},{"parent":"standard-G03","t":{"id":"standard-G03-T14","name":"SMM-поддержка запущена","os":0,"oe":0,"r":"r5","result":"Владелец: SMM · Норматив: T−0","own":["r5"]}},{"parent":"standard-G04","t":{"id":"standard-G04-T01","name":"Материалы переданы на сборку","os":-17,"oe":-14,"r":"r2","result":"Владелец: Бренд · Норматив: T−17 · 3 дн.","own":["r2"]}},{"parent":"standard-G04","t":{"id":"standard-G04-T02","name":"Сборка и финальная проверка завершены","os":-1,"oe":-1,"r":"r1","result":"Владелец: Промо · Норматив: T−1","own":["r1"]}},{"parent":"standard-G04","t":{"id":"standard-G04-T03","name":"Промо запущено","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"standard-G05","t":{"id":"standard-G05-T01","name":"Составлена структура лендинга","os":-53,"oe":-53,"r":"r1","result":"Владелец: Промо · Норматив: T−53","own":["r1"]}},{"parent":"standard-G05","t":{"id":"standard-G05-T02","name":"Структура лендинга подготовлена и форма передана в Коммерцию","os":-50,"oe":-50,"r":"r1","result":"Владелец: Промо · Норматив: T−50","own":["r1"]}},{"parent":"standard-G05","t":{"id":"standard-G05-T03","name":"Товары переданы в креативную студию на отрисовку","os":-32,"oe":-32,"r":"r1","result":"Владелец: Промо · Норматив: T−32","own":["r1"]}},{"parent":"standard-G05","t":{"id":"standard-G05-T04","name":"Коммерция сдала заполненные подборки и бусты","os":-27,"oe":-27,"r":"r7","result":"Владелец: Коммерция · Норматив: T−27","own":["r7"]}},{"parent":"standard-G05","t":{"id":"standard-G05-T05","name":"Подборки собраны, бустинг настроен","os":-25,"oe":-25,"r":"r1","result":"Владелец: Промо · Норматив: T−25","own":["r1"]}},{"parent":"standard-G05","t":{"id":"standard-G05-T06","name":"Креативы переданы на сборку лендинга и БК","os":-22,"oe":-20,"r":"r3","result":"Владелец: Студия · Норматив: T−22 · 2 дн.","own":["r3"]}},{"parent":"standard-G05","t":{"id":"standard-G05-T07","name":"Лендинг собран","os":-21,"oe":-21,"r":"r1","result":"Владелец: Промо · Норматив: T−21","own":["r1"]}},{"parent":"standard-G05","t":{"id":"standard-G05-T08","name":"Лендинг проверен и готов к запуску","os":-3,"oe":-3,"r":"r1","result":"Владелец: Промо · Норматив: T−3","own":["r1"]}},{"parent":"standard-G05","t":{"id":"standard-G05-T09","name":"Лендинг запущен","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"standard-G06","t":{"id":"standard-G06-T01","name":"Коммерция заполнила Х и СХ на первый флайт","os":-14,"oe":-14,"r":"r7","result":"Владелец: Коммерция · Норматив: T−14","own":["r7"]}},{"parent":"standard-G06","t":{"id":"standard-G06-T02","name":"Х и СХ собраны из Микросервиса","os":-8,"oe":-8,"r":"r1","result":"Владелец: Промо · Норматив: T−8","own":["r1"]}},{"parent":"standard-G06","t":{"id":"standard-G06-T03","name":"Готовы креативы для заведения акции","os":-5,"oe":-3,"r":"r3","result":"Владелец: Студия · Норматив: T−5 · 2 дн.","own":["r3"]}},{"parent":"standard-G06","t":{"id":"standard-G06-T04","name":"Акция селлера заведена","os":-5,"oe":-5,"r":"r1","result":"Владелец: Промо · Норматив: T−5","own":["r1"]}},{"parent":"standard-G06","t":{"id":"standard-G06-T05","name":"Проверены цены, ссылки и состав Х/СХ перед запуском","os":-1,"oe":-1,"r":"r1","result":"Владелец: Промо · Норматив: T−1","own":["r1"]}},{"parent":"standard-G06","t":{"id":"standard-G06-T06","name":"Промо-подборка с Х и СХ запущена","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T01","name":"Финализированы механики и подборки Global/Joom","os":-22,"oe":-22,"r":"r1","result":"Владелец: Промо · Норматив: T−22","own":["r1"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T02","name":"Подготовлена концепция от бренд-команды","os":-20,"oe":-17,"r":"r2","result":"Владелец: Бренд · Норматив: T−20 · 3 дн.","own":["r2"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T03","name":"Поставлен бриф от бренда в креативную студию","os":-20,"oe":-18,"r":"r2","result":"Владелец: Бренд · Норматив: T−20 · 2 дн.","own":["r2"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T04","name":"Подготовлен план главной In-App","os":-20,"oe":-20,"r":"r1","result":"Владелец: Промо · Норматив: T−20","own":["r1"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T05","name":"Подготовлен план размещений CRM","os":-20,"oe":-18,"r":"r2","result":"Владелец: Бренд · Норматив: T−20 · 2 дн.","own":["r2"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T06","name":"Подготовлен план размещений SMM","os":-20,"oe":-18,"r":"r2","result":"Владелец: Бренд · Норматив: T−20 · 2 дн.","own":["r2"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T07","name":"Креативы просмотрены и согласованы командой","os":-7,"oe":-5,"r":"r3","result":"Владелец: Студия · Норматив: T−7 · 2 дн.","own":["r3"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T08","name":"Креативы переданы на сборку","os":-5,"oe":-3,"r":"r3","result":"Владелец: Студия · Норматив: T−5 · 2 дн.","own":["r3"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T09","name":"Сборка завершена и проверена","os":-1,"oe":-1,"r":"r1","result":"Владелец: Промо · Норматив: T−1","own":["r1"]}},{"parent":"standard-G07","t":{"id":"standard-G07-T10","name":"Global/Joom запущен","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"standard-G08","t":{"id":"standard-G08-T01","name":"Подготовлены презентации с категориями для селлеров","os":-32,"oe":-32,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−32","own":["r8"]}},{"parent":"standard-G08","t":{"id":"standard-G08-T02","name":"Подготовлены материалы / POSM для ПВЗ","os":-7,"oe":-7,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−7","own":["r8"]}},{"parent":"standard-G08","t":{"id":"standard-G08-T03","name":"Готовы листовки для ПВЗ","os":-3,"oe":-3,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−3","own":["r8"]}},{"parent":"standard-G08","t":{"id":"standard-G08-T04","name":"Материалы ПВЗ размещены к старту промо","os":0,"oe":0,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−0","own":["r8"]}},{"parent":"standard-G09","t":{"id":"standard-G09-T01","name":"Подготовлен и согласован legal для диджитал-креативов и ПВЗ","os":-15,"oe":-12,"r":"r2","result":"Владелец: Бренд / Legal · Норматив: T−15 · 3 дн.","own":["r2","r9"]}},{"parent":"standard-G10","t":{"id":"standard-G10-T01","name":"Согласована поддержка и баннеры в Uzum Bank","os":-15,"oe":-13,"r":"r2","result":"Владелец: Бренд / Финком · Норматив: T−15 · 2 дн.","own":["r2","r10"]}},{"parent":"standard-G10","t":{"id":"standard-G10-T02","name":"Согласованы размещения в Tezkor","os":-15,"oe":-13,"r":"r2","result":"Владелец: Бренд / Финком · Норматив: T−15 · 2 дн.","own":["r2","r10"]}},{"parent":"standard-G10","t":{"id":"standard-G10-T03","name":"Согласован PR-релиз / посев экосистемы","os":-15,"oe":-13,"r":"r2","result":"Владелец: Бренд / PR · Норматив: T−15 · 2 дн.","own":["r2","r11"]}},{"parent":"standard-G10","t":{"id":"standard-G10-T04","name":"Зафиксирована механика скидок по карте банка","os":-14,"oe":-14,"r":"r1","result":"Владелец: Промо / Финком · Норматив: T−14","own":["r1","r10"]}},{"parent":"standard-G11","t":{"id":"standard-G11-T01","name":"Настроен мониторинг ключевых метрик промо","os":-1,"oe":-1,"r":"r1","result":"Владелец: Промо · Норматив: T−1","own":["r1"]}},{"parent":"standard-G11","t":{"id":"standard-G11-T02","name":"Запуск: начат мониторинг факта","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"standard-G11","t":{"id":"standard-G11-T03","name":"Получен постанализ промо","os":44,"oe":44,"r":"r1","result":"Владелец: Промо · Норматив: T−-44","own":["r1"]}}]},"ooh":{"label":"С наружкой","blocks":[{"id":"ooh-G01","name":"Подготовка","os":-75,"oe":-52,"r":"r1","own":["r1","r12","r2"]},{"id":"ooh-G02","name":"Концепция большого сезона","os":-75,"oe":-21,"r":"r1","own":["r1","r2","r3","r4"]},{"id":"ooh-G03","name":"Контент и коммуникации","os":-38,"oe":0,"r":"r2","own":["r2","r5","r3","r6"]},{"id":"ooh-G04","name":"In-App","os":-22,"oe":0,"r":"r2","own":["r2","r1"]},{"id":"ooh-G05","name":"ООН","os":-74,"oe":1,"r":"r2","own":["r2","r13","r3"]},{"id":"ooh-G06","name":"Подготовка лендинга","os":-68,"oe":0,"r":"r1","own":["r1","r7","r3"]},{"id":"ooh-G07","name":"Заведение акции и сбор Х и СХ","os":-14,"oe":0,"r":"r7","own":["r7","r1","r3"]},{"id":"ooh-G08","name":"Глобал/Joom","os":-26,"oe":0,"r":"r1","own":["r1","r2","r3"]},{"id":"ooh-G09","name":"Стрим Селлеры + ПВЗ","os":-38,"oe":0,"r":"r8","own":["r8"]},{"id":"ooh-G10","name":"Юридические тексты","os":-15,"oe":-12,"r":"r2","own":["r2","r9"]},{"id":"ooh-G11","name":"Поддержка от финкома (банк)","os":-22,"oe":-18,"r":"r2","own":["r2","r10","r11","r1"]},{"id":"ooh-G12","name":"Аналитика","os":-2,"oe":44,"r":"r1","own":["r1"]}],"tasks":[{"parent":"ooh-G01","t":{"id":"ooh-G01-T01","name":"Создать группу","os":-75,"oe":-75,"r":"r1","result":"Владелец: Промо · Норматив: T−75","own":["r1"]}},{"parent":"ooh-G01","t":{"id":"ooh-G01-T02","name":"Согласование наружки","os":-74,"oe":-74,"r":"r12","result":"Владелец: Офлайн маркетинг · Норматив: T−74","own":["r12"]}},{"parent":"ooh-G01","t":{"id":"ooh-G01-T03","name":"Таймлайн проекта","os":-73,"oe":-73,"r":"r1","result":"Владелец: Промо · Норматив: T−73","own":["r1"]}},{"parent":"ooh-G01","t":{"id":"ooh-G01-T04","name":"Назначены регулярные встречи Промо–Бренд–Студия","os":-73,"oe":-73,"r":"r1","result":"Владелец: Промо · Норматив: T−73","own":["r1"]}},{"parent":"ooh-G01","t":{"id":"ooh-G01-T05","name":"Назначены регулярные встречи Промо–Коммерция","os":-73,"oe":-73,"r":"r1","result":"Владелец: Промо · Норматив: T−73","own":["r1"]}},{"parent":"ooh-G01","t":{"id":"ooh-G01-T06","name":"Преданализ","os":-73,"oe":-73,"r":"r1","result":"Владелец: Промо · Норматив: T−73","own":["r1"]}},{"parent":"ooh-G01","t":{"id":"ooh-G01-T07","name":"Создан эпик в Jira","os":-70,"oe":-70,"r":"r1","result":"Владелец: Промо · Норматив: T−70","own":["r1"]}},{"parent":"ooh-G01","t":{"id":"ooh-G01-T08","name":"Заполнен календарь коммуникаций","os":-52,"oe":-52,"r":"r2","result":"Владелец: Бренд · Норматив: T−52","own":["r2"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T01","name":"Определена дата промо и первичная механика","os":-75,"oe":-75,"r":"r1","result":"Владелец: Промо · Норматив: T−75","own":["r1"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T02","name":"Финализирована механика","os":-70,"oe":-70,"r":"r1","result":"Владелец: Промо · Норматив: T−70","own":["r1"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T03","name":"Подготовлена CJM и план главной in-app","os":-68,"oe":-68,"r":"r1","result":"Владелец: Промо · Норматив: T−68","own":["r1"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T04","name":"Поставлен бриф Промо–Бренд","os":-66,"oe":-66,"r":"r1","result":"Владелец: Промо · Норматив: T−66","own":["r1"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T05","name":"Поставлен бриф Промо–КМ","os":-64,"oe":-64,"r":"r1","result":"Владелец: Промо · Норматив: T−64","own":["r1"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T06","name":"Поставлен бриф Бренд–Студия","os":-64,"oe":-62,"r":"r2","result":"Владелец: Бренд · Норматив: T−64 · 2 дн.","own":["r2"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T07","name":"Встреча с обратной связью по брифу Студия–Бренд","os":-60,"oe":-59,"r":"r3","result":"Владелец: Студия · Норматив: T−60 · 1 дн.","own":["r3"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T08","name":"Подготовлена матрица сообщений по бренду","os":-58,"oe":-56,"r":"r2","result":"Владелец: Бренд · Норматив: T−58 · 2 дн.","own":["r2"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T09","name":"Проведён общий кик-офф для Маркетинга","os":-50,"oe":-49,"r":"r2","result":"Владелец: Бренд · Норматив: T−50 · 1 дн.","own":["r2"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T10","name":"Подготовлены первые концепции","os":-42,"oe":-38,"r":"r3","result":"Владелец: Студия · Норматив: T−42 · 4 дн.","own":["r3"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T11","name":"Выбрана концепция","os":-40,"oe":-38,"r":"r2","result":"Владелец: Бренд · Норматив: T−40 · 2 дн.","own":["r2"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T12","name":"Концепция согласована CMO","os":-38,"oe":-36,"r":"r2","result":"Владелец: Бренд · Норматив: T−38 · 2 дн.","own":["r2"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T13","name":"Концепция согласована на SDB","os":-37,"oe":-35,"r":"r2","result":"Владелец: Бренд · Норматив: T−37 · 2 дн.","own":["r2"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T14","name":"Проведён брифинг смежных команд","os":-35,"oe":-33,"r":"r2","result":"Владелец: Бренд · Норматив: T−35 · 2 дн.","own":["r2"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T15","name":"Подготовлены первые КВ","os":-32,"oe":-28,"r":"r3","result":"Владелец: Студия · Норматив: T−32 · 4 дн.","own":["r3"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T16","name":"Обратная связь по КВ","os":-29,"oe":-27,"r":"r2","result":"Владелец: Бренд + Промо + CMO · Норматив: T−29 · 2 дн.","own":["r2","r1","r4"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T17","name":"Финальные КВ по правкам","os":-29,"oe":-27,"r":"r3","result":"Владелец: Студия · Норматив: T−29 · 2 дн.","own":["r3"]}},{"parent":"ooh-G02","t":{"id":"ooh-G02-T18","name":"Утверждён финальный кей-виж","os":-23,"oe":-21,"r":"r2","result":"Владелец: Бренд + CMO · Норматив: T−23 · 2 дн.","own":["r2","r4"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T01","name":"Поставлена задача / бриф на CRM","os":-38,"oe":-36,"r":"r2","result":"Владелец: Бренд · Норматив: T−38 · 2 дн.","own":["r2"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T02","name":"Поставлен бриф на SMM","os":-38,"oe":-36,"r":"r2","result":"Владелец: Бренд · Норматив: T−38 · 2 дн.","own":["r2"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T03","name":"Подготовлен коммуникационный план CRM","os":-25,"oe":-23,"r":"r2","result":"Владелец: Бренд · Норматив: T−25 · 2 дн.","own":["r2"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T04","name":"Подготовлен и согласован контент-план","os":-25,"oe":-23,"r":"r5","result":"Владелец: SMM · Норматив: T−25 · 2 дн.","own":["r5"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T05","name":"Подготовлены драфты канальных креативов","os":-18,"oe":-15,"r":"r2","result":"Владелец: Бренд · Норматив: T−18 · 3 дн.","own":["r2"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T06","name":"Согласован план по блогерам / посевам","os":-18,"oe":-16,"r":"r5","result":"Владелец: SMM · Норматив: T−18 · 2 дн.","own":["r5"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T07","name":"Согласованы сегменты и календарь запусков","os":-18,"oe":-16,"r":"r2","result":"Владелец: Бренд · Норматив: T−18 · 2 дн.","own":["r2"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T08","name":"Канальные креативы согласованы","os":-14,"oe":-12,"r":"r3","result":"Владелец: Студия · Норматив: T−14 · 2 дн.","own":["r3"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T09","name":"Создан финальный креатив","os":-9,"oe":-7,"r":"r3","result":"Владелец: Студия · Норматив: T−9 · 2 дн.","own":["r3"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T10","name":"Получены материалы, настроены коммуникации и проведён QA","os":-6,"oe":-4,"r":"r3","result":"Владелец: Студия · Норматив: T−6 · 2 дн.","own":["r3"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T11","name":"Готовы ресайзы","os":-6,"oe":-5,"r":"r3","result":"Владелец: Студия · Норматив: T−6 · 1 дн.","own":["r3"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T12","name":"Готовы финальные материалы и расписание публикаций","os":-6,"oe":-4,"r":"r2","result":"Владелец: Бренд · Норматив: T−6 · 2 дн.","own":["r2"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T13","name":"CRM-коммуникации запущены","os":0,"oe":0,"r":"r6","result":"Владелец: CRM · Норматив: T−0","own":["r6"]}},{"parent":"ooh-G03","t":{"id":"ooh-G03-T14","name":"SMM-поддержка запущена","os":0,"oe":0,"r":"r5","result":"Владелец: SMM · Норматив: T−0","own":["r5"]}},{"parent":"ooh-G04","t":{"id":"ooh-G04-T01","name":"Материалы переданы на сборку","os":-22,"oe":-20,"r":"r2","result":"Владелец: Бренд · Норматив: T−22 · 2 дн.","own":["r2"]}},{"parent":"ooh-G04","t":{"id":"ooh-G04-T02","name":"Сборка и финальная проверка завершены","os":-2,"oe":-2,"r":"r1","result":"Владелец: Промо · Норматив: T−2","own":["r1"]}},{"parent":"ooh-G04","t":{"id":"ooh-G04-T03","name":"Промо запущено","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"ooh-G05","t":{"id":"ooh-G05-T01","name":"Согласованы размещения и технические требования OOH","os":-74,"oe":-73,"r":"r2","result":"Владелец: Бренд · Норматив: T−74 · 1 дн.","own":["r2"]}},{"parent":"ooh-G05","t":{"id":"ooh-G05-T02","name":"Финализированы офферы для OOH","os":-38,"oe":-37,"r":"r13","result":"Владелец: КМ · Норматив: T−38 · 1 дн.","own":["r13"]}},{"parent":"ooh-G05","t":{"id":"ooh-G05-T03","name":"Показаны драфты дизайнов и текстов OOH","os":-29,"oe":-27,"r":"r3","result":"Владелец: Студия · Норматив: T−29 · 2 дн.","own":["r3"]}},{"parent":"ooh-G05","t":{"id":"ooh-G05-T04","name":"Согласованы дизайны всех OOH-материалов","os":-25,"oe":-24,"r":"r3","result":"Владелец: Студия · Норматив: T−25 · 1 дн.","own":["r3"]}},{"parent":"ooh-G05","t":{"id":"ooh-G05-T05","name":"Готовы финальные адаптации и юридические тексты OOH","os":-17,"oe":-16,"r":"r2","result":"Владелец: Бренд · Норматив: T−17 · 1 дн.","own":["r2"]}},{"parent":"ooh-G05","t":{"id":"ooh-G05-T06","name":"Финальные материалы переданы на размещение","os":-8,"oe":-7,"r":"r2","result":"Владелец: Бренд · Норматив: T−8 · 1 дн.","own":["r2"]}},{"parent":"ooh-G05","t":{"id":"ooh-G05-T07","name":"Наружная реклама запущена","os":0,"oe":1,"r":"r2","result":"Владелец: Бренд · Норматив: T−0 · 1 дн.","own":["r2"]}},{"parent":"ooh-G06","t":{"id":"ooh-G06-T01","name":"Составлена структура лендинга","os":-68,"oe":-68,"r":"r1","result":"Владелец: Промо · Норматив: T−68","own":["r1"]}},{"parent":"ooh-G06","t":{"id":"ooh-G06-T02","name":"Структура лендинга подготовлена и форма передана в Коммерцию","os":-65,"oe":-65,"r":"r1","result":"Владелец: Промо · Норматив: T−65","own":["r1"]}},{"parent":"ooh-G06","t":{"id":"ooh-G06-T03","name":"Товары переданы в креативную студию на отрисовку","os":-38,"oe":-38,"r":"r1","result":"Владелец: Промо · Норматив: T−38","own":["r1"]}},{"parent":"ooh-G06","t":{"id":"ooh-G06-T04","name":"Коммерция сдала заполненные подборки и бусты","os":-34,"oe":-34,"r":"r7","result":"Владелец: Коммерция · Норматив: T−34","own":["r7"]}},{"parent":"ooh-G06","t":{"id":"ooh-G06-T05","name":"Подборки собраны, бустинг настроен","os":-30,"oe":-30,"r":"r1","result":"Владелец: Промо · Норматив: T−30","own":["r1"]}},{"parent":"ooh-G06","t":{"id":"ooh-G06-T06","name":"Креативы переданы на сборку лендинга и БК","os":-26,"oe":-24,"r":"r3","result":"Владелец: Студия · Норматив: T−26 · 2 дн.","own":["r3"]}},{"parent":"ooh-G06","t":{"id":"ooh-G06-T07","name":"Лендинг собран","os":-23,"oe":-23,"r":"r1","result":"Владелец: Промо · Норматив: T−23","own":["r1"]}},{"parent":"ooh-G06","t":{"id":"ooh-G06-T08","name":"Лендинг проверен и готов к запуску","os":-4,"oe":-4,"r":"r1","result":"Владелец: Промо · Норматив: T−4","own":["r1"]}},{"parent":"ooh-G06","t":{"id":"ooh-G06-T09","name":"Лендинг запущен","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"ooh-G07","t":{"id":"ooh-G07-T01","name":"Коммерция заполнила Х и СХ на первый флайт","os":-14,"oe":-14,"r":"r7","result":"Владелец: Коммерция · Норматив: T−14","own":["r7"]}},{"parent":"ooh-G07","t":{"id":"ooh-G07-T02","name":"Х и СХ собраны из Микросервиса","os":-8,"oe":-8,"r":"r1","result":"Владелец: Промо · Норматив: T−8","own":["r1"]}},{"parent":"ooh-G07","t":{"id":"ooh-G07-T03","name":"Готовы креативы для заведения акции","os":-5,"oe":-3,"r":"r3","result":"Владелец: Студия · Норматив: T−5 · 2 дн.","own":["r3"]}},{"parent":"ooh-G07","t":{"id":"ooh-G07-T04","name":"Акция селлера заведена","os":-5,"oe":-5,"r":"r1","result":"Владелец: Промо · Норматив: T−5","own":["r1"]}},{"parent":"ooh-G07","t":{"id":"ooh-G07-T05","name":"Проверены цены, ссылки и состав Х/СХ перед запуском","os":-1,"oe":-1,"r":"r1","result":"Владелец: Промо · Норматив: T−1","own":["r1"]}},{"parent":"ooh-G07","t":{"id":"ooh-G07-T06","name":"Промо-подборка с Х и СХ запущена","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T01","name":"Финализированы механики и подборки Global/Joom","os":-26,"oe":-26,"r":"r1","result":"Владелец: Промо · Норматив: T−26","own":["r1"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T02","name":"Подготовлена концепция от бренд-команды","os":-25,"oe":-23,"r":"r2","result":"Владелец: Бренд · Норматив: T−25 · 2 дн.","own":["r2"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T03","name":"Поставлен бриф от бренда в креативную студию","os":-24,"oe":-22,"r":"r2","result":"Владелец: Бренд · Норматив: T−24 · 2 дн.","own":["r2"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T04","name":"Подготовлен план главной In-App","os":-22,"oe":-22,"r":"r1","result":"Владелец: Промо · Норматив: T−22","own":["r1"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T05","name":"Подготовлен план размещений CRM","os":-22,"oe":-20,"r":"r2","result":"Владелец: Бренд · Норматив: T−22 · 2 дн.","own":["r2"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T06","name":"Подготовлен план размещений SMM","os":-22,"oe":-20,"r":"r2","result":"Владелец: Бренд · Норматив: T−22 · 2 дн.","own":["r2"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T07","name":"Креативы просмотрены и согласованы командой","os":-8,"oe":-6,"r":"r3","result":"Владелец: Студия · Норматив: T−8 · 2 дн.","own":["r3"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T08","name":"Креативы переданы на сборку","os":-6,"oe":-4,"r":"r3","result":"Владелец: Студия · Норматив: T−6 · 2 дн.","own":["r3"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T09","name":"Сборка завершена и проверена","os":-2,"oe":-2,"r":"r1","result":"Владелец: Промо · Норматив: T−2","own":["r1"]}},{"parent":"ooh-G08","t":{"id":"ooh-G08-T10","name":"Global/Joom запущен","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"ooh-G09","t":{"id":"ooh-G09-T01","name":"Подготовлены презентации с категориями для селлеров","os":-38,"oe":-38,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−38","own":["r8"]}},{"parent":"ooh-G09","t":{"id":"ooh-G09-T02","name":"Подготовлены материалы / POSM для ПВЗ","os":-10,"oe":-10,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−10","own":["r8"]}},{"parent":"ooh-G09","t":{"id":"ooh-G09-T03","name":"Готовы листовки для ПВЗ","os":-5,"oe":-5,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−5","own":["r8"]}},{"parent":"ooh-G09","t":{"id":"ooh-G09-T04","name":"Материалы ПВЗ размещены к старту промо","os":0,"oe":0,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−0","own":["r8"]}},{"parent":"ooh-G10","t":{"id":"ooh-G10-T01","name":"Подготовлен и согласован legal для диджитал-креативов и ПВЗ","os":-15,"oe":-12,"r":"r2","result":"Владелец: Бренд / Legal · Норматив: T−15 · 3 дн.","own":["r2","r9"]}},{"parent":"ooh-G10","t":{"id":"ooh-G10-T02","name":"Подготовлен и согласован legal для OOH","os":-15,"oe":-13,"r":"r2","result":"Владелец: Бренд / Legal · Норматив: T−15 · 2 дн.","own":["r2","r9"]}},{"parent":"ooh-G11","t":{"id":"ooh-G11-T01","name":"Согласована поддержка и баннеры в Uzum Bank","os":-22,"oe":-20,"r":"r2","result":"Владелец: Бренд / Финком · Норматив: T−22 · 2 дн.","own":["r2","r10"]}},{"parent":"ooh-G11","t":{"id":"ooh-G11-T02","name":"Согласованы размещения в Tezkor","os":-22,"oe":-20,"r":"r2","result":"Владелец: Бренд / Финком · Норматив: T−22 · 2 дн.","own":["r2","r10"]}},{"parent":"ooh-G11","t":{"id":"ooh-G11-T03","name":"Согласован PR-релиз / посев экосистемы","os":-20,"oe":-18,"r":"r2","result":"Владелец: Бренд / PR · Норматив: T−20 · 2 дн.","own":["r2","r11"]}},{"parent":"ooh-G11","t":{"id":"ooh-G11-T04","name":"Зафиксирована механика скидок по карте банка","os":-20,"oe":-20,"r":"r1","result":"Владелец: Промо / Финком · Норматив: T−20","own":["r1","r10"]}},{"parent":"ooh-G12","t":{"id":"ooh-G12-T01","name":"Настроен мониторинг ключевых метрик промо","os":-2,"oe":-2,"r":"r1","result":"Владелец: Промо · Норматив: T−2","own":["r1"]}},{"parent":"ooh-G12","t":{"id":"ooh-G12-T02","name":"Запуск: начат мониторинг факта","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"ooh-G12","t":{"id":"ooh-G12-T03","name":"Получен постанализ промо","os":44,"oe":44,"r":"r1","result":"Владелец: Промо · Норматив: T−-44","own":["r1"]}}]},"tv_ooh":{"label":"ТВ + наружка","blocks":[{"id":"tv_ooh-G01","name":"Подготовка","os":-90,"oe":-60,"r":"r1","own":["r1","r12","r2"]},{"id":"tv_ooh-G02","name":"Концепция большого сезона","os":-90,"oe":-27,"r":"r1","own":["r1","r2","r3","r4"]},{"id":"tv_ooh-G03","name":"Контент и коммуникации","os":-45,"oe":0,"r":"r2","own":["r2","r5","r3","r6"]},{"id":"tv_ooh-G04","name":"In-App","os":-27,"oe":0,"r":"r2","own":["r2","r1"]},{"id":"tv_ooh-G05","name":"ООН","os":-89,"oe":1,"r":"r2","own":["r2","r13","r3"]},{"id":"tv_ooh-G06","name":"ТВ","os":-35,"oe":1,"r":"r2","own":["r2"]},{"id":"tv_ooh-G07","name":"Подготовка лендинга","os":-83,"oe":0,"r":"r1","own":["r1","r7","r3"]},{"id":"tv_ooh-G08","name":"Заведение акции и сбор Х и СХ","os":-14,"oe":0,"r":"r7","own":["r7","r1","r3"]},{"id":"tv_ooh-G09","name":"Глобал/Joom","os":-30,"oe":0,"r":"r1","own":["r1","r2","r3"]},{"id":"tv_ooh-G10","name":"Стрим Селлеры + ПВЗ","os":-45,"oe":0,"r":"r8","own":["r8"]},{"id":"tv_ooh-G11","name":"Юридические тексты","os":-15,"oe":-13,"r":"r2","own":["r2","r9"]},{"id":"tv_ooh-G12","name":"Поддержка от финкома (банк)","os":-30,"oe":-24,"r":"r2","own":["r2","r10","r11","r1"]},{"id":"tv_ooh-G13","name":"Аналитика","os":-3,"oe":44,"r":"r1","own":["r1"]}],"tasks":[{"parent":"tv_ooh-G01","t":{"id":"tv_ooh-G01-T01","name":"Создать группу","os":-90,"oe":-90,"r":"r1","result":"Владелец: Промо · Норматив: T−90","own":["r1"]}},{"parent":"tv_ooh-G01","t":{"id":"tv_ooh-G01-T02","name":"Согласование ТВ и наружки","os":-89,"oe":-89,"r":"r12","result":"Владелец: Офлайн маркетинг · Норматив: T−89","own":["r12"]}},{"parent":"tv_ooh-G01","t":{"id":"tv_ooh-G01-T03","name":"Таймлайн проекта","os":-88,"oe":-88,"r":"r1","result":"Владелец: Промо · Норматив: T−88","own":["r1"]}},{"parent":"tv_ooh-G01","t":{"id":"tv_ooh-G01-T04","name":"Назначены регулярные встречи Промо–Бренд–Студия","os":-88,"oe":-88,"r":"r1","result":"Владелец: Промо · Норматив: T−88","own":["r1"]}},{"parent":"tv_ooh-G01","t":{"id":"tv_ooh-G01-T05","name":"Назначены регулярные встречи Промо–Коммерция","os":-88,"oe":-88,"r":"r1","result":"Владелец: Промо · Норматив: T−88","own":["r1"]}},{"parent":"tv_ooh-G01","t":{"id":"tv_ooh-G01-T06","name":"Преданализ","os":-88,"oe":-88,"r":"r1","result":"Владелец: Промо · Норматив: T−88","own":["r1"]}},{"parent":"tv_ooh-G01","t":{"id":"tv_ooh-G01-T07","name":"Создан эпик в Jira","os":-85,"oe":-85,"r":"r1","result":"Владелец: Промо · Норматив: T−85","own":["r1"]}},{"parent":"tv_ooh-G01","t":{"id":"tv_ooh-G01-T08","name":"Заполнен календарь коммуникаций","os":-60,"oe":-60,"r":"r2","result":"Владелец: Бренд · Норматив: T−60","own":["r2"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T01","name":"Определена дата промо и первичная механика","os":-90,"oe":-90,"r":"r1","result":"Владелец: Промо · Норматив: T−90","own":["r1"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T02","name":"Финализирована механика","os":-85,"oe":-85,"r":"r1","result":"Владелец: Промо · Норматив: T−85","own":["r1"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T03","name":"Подготовлена CJM и план главной in-app","os":-83,"oe":-83,"r":"r1","result":"Владелец: Промо · Норматив: T−83","own":["r1"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T04","name":"Поставлен бриф Промо–Бренд","os":-81,"oe":-81,"r":"r1","result":"Владелец: Промо · Норматив: T−81","own":["r1"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T05","name":"Поставлен бриф Промо–КМ","os":-79,"oe":-79,"r":"r1","result":"Владелец: Промо · Норматив: T−79","own":["r1"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T06","name":"Поставлен бриф Бренд–Студия","os":-79,"oe":-78,"r":"r2","result":"Владелец: Бренд · Норматив: T−79 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T07","name":"Встреча с обратной связью по брифу Студия–Бренд","os":-75,"oe":-74,"r":"r3","result":"Владелец: Студия · Норматив: T−75 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T08","name":"Подготовлена матрица сообщений по бренду","os":-72,"oe":-70,"r":"r2","result":"Владелец: Бренд · Норматив: T−72 · 2 дн.","own":["r2"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T09","name":"Проведён общий кик-офф для Маркетинга","os":-60,"oe":-59,"r":"r2","result":"Владелец: Бренд · Норматив: T−60 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T10","name":"Подготовлены первые концепции","os":-54,"oe":-52,"r":"r3","result":"Владелец: Студия · Норматив: T−54 · 2 дн.","own":["r3"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T11","name":"Выбрана концепция","os":-52,"oe":-51,"r":"r2","result":"Владелец: Бренд · Норматив: T−52 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T12","name":"Концепция согласована CMO","os":-50,"oe":-49,"r":"r2","result":"Владелец: Бренд · Норматив: T−50 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T13","name":"Концепция согласована на SDB","os":-49,"oe":-48,"r":"r2","result":"Владелец: Бренд · Норматив: T−49 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T14","name":"Проведён брифинг смежных команд","os":-47,"oe":-46,"r":"r2","result":"Владелец: Бренд · Норматив: T−47 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T15","name":"Подготовлены первые КВ","os":-44,"oe":-42,"r":"r3","result":"Владелец: Студия · Норматив: T−44 · 2 дн.","own":["r3"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T16","name":"Обратная связь по КВ","os":-40,"oe":-38,"r":"r2","result":"Владелец: Бренд + Промо + CMO · Норматив: T−40 · 2 дн.","own":["r2","r1","r4"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T17","name":"Финальные КВ по правкам","os":-35,"oe":-33,"r":"r3","result":"Владелец: Студия · Норматив: T−35 · 2 дн.","own":["r3"]}},{"parent":"tv_ooh-G02","t":{"id":"tv_ooh-G02-T18","name":"Утверждён финальный кей-виж","os":-28,"oe":-27,"r":"r2","result":"Владелец: Бренд + CMO · Норматив: T−28 · 1 дн.","own":["r2","r4"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T01","name":"Поставлена задача / бриф на CRM","os":-45,"oe":-44,"r":"r2","result":"Владелец: Бренд · Норматив: T−45 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T02","name":"Поставлен бриф на SMM","os":-45,"oe":-44,"r":"r2","result":"Владелец: Бренд · Норматив: T−45 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T03","name":"Подготовлен коммуникационный план CRM","os":-30,"oe":-29,"r":"r2","result":"Владелец: Бренд · Норматив: T−30 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T04","name":"Подготовлен и согласован контент-план","os":-30,"oe":-29,"r":"r5","result":"Владелец: SMM · Норматив: T−30 · 1 дн.","own":["r5"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T05","name":"Подготовлены драфты канальных креативов","os":-20,"oe":-18,"r":"r2","result":"Владелец: Бренд · Норматив: T−20 · 2 дн.","own":["r2"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T06","name":"Согласован план по блогерам / посевам","os":-20,"oe":-19,"r":"r5","result":"Владелец: SMM · Норматив: T−20 · 1 дн.","own":["r5"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T07","name":"Согласованы сегменты и календарь запусков","os":-20,"oe":-19,"r":"r2","result":"Владелец: Бренд · Норматив: T−20 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T08","name":"Канальные креативы согласованы","os":-15,"oe":-14,"r":"r3","result":"Владелец: Студия · Норматив: T−15 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T09","name":"Создан финальный креатив","os":-10,"oe":-9,"r":"r3","result":"Владелец: Студия · Норматив: T−10 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T10","name":"Получены материалы, настроены коммуникации и проведён QA","os":-7,"oe":-6,"r":"r3","result":"Владелец: Студия · Норматив: T−7 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T11","name":"Готовы ресайзы","os":-7,"oe":-6,"r":"r3","result":"Владелец: Студия · Норматив: T−7 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T12","name":"Готовы финальные материалы и расписание публикаций","os":-7,"oe":-6,"r":"r2","result":"Владелец: Бренд · Норматив: T−7 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T13","name":"CRM-коммуникации запущены","os":0,"oe":0,"r":"r6","result":"Владелец: CRM · Норматив: T−0","own":["r6"]}},{"parent":"tv_ooh-G03","t":{"id":"tv_ooh-G03-T14","name":"SMM-поддержка запущена","os":0,"oe":0,"r":"r5","result":"Владелец: SMM · Норматив: T−0","own":["r5"]}},{"parent":"tv_ooh-G04","t":{"id":"tv_ooh-G04-T01","name":"Материалы переданы на сборку","os":-27,"oe":-25,"r":"r2","result":"Владелец: Бренд · Норматив: T−27 · 2 дн.","own":["r2"]}},{"parent":"tv_ooh-G04","t":{"id":"tv_ooh-G04-T02","name":"Сборка и финальная проверка завершены","os":-2,"oe":-2,"r":"r1","result":"Владелец: Промо · Норматив: T−2","own":["r1"]}},{"parent":"tv_ooh-G04","t":{"id":"tv_ooh-G04-T03","name":"Промо запущено","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"tv_ooh-G05","t":{"id":"tv_ooh-G05-T01","name":"Согласованы размещения и технические требования OOH","os":-89,"oe":-88,"r":"r2","result":"Владелец: Бренд · Норматив: T−89 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G05","t":{"id":"tv_ooh-G05-T02","name":"Финализированы офферы для OOH","os":-45,"oe":-44,"r":"r13","result":"Владелец: КМ · Норматив: T−45 · 1 дн.","own":["r13"]}},{"parent":"tv_ooh-G05","t":{"id":"tv_ooh-G05-T03","name":"Показаны драфты дизайнов и текстов OOH","os":-35,"oe":-33,"r":"r3","result":"Владелец: Студия · Норматив: T−35 · 2 дн.","own":["r3"]}},{"parent":"tv_ooh-G05","t":{"id":"tv_ooh-G05-T04","name":"Согласованы дизайны всех OOH-материалов","os":-30,"oe":-29,"r":"r3","result":"Владелец: Студия · Норматив: T−30 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G05","t":{"id":"tv_ooh-G05-T05","name":"Готовы финальные адаптации и юридические тексты OOH","os":-20,"oe":-19,"r":"r2","result":"Владелец: Бренд · Норматив: T−20 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G05","t":{"id":"tv_ooh-G05-T06","name":"Финальные материалы переданы на размещение","os":-10,"oe":-9,"r":"r2","result":"Владелец: Бренд · Норматив: T−10 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G05","t":{"id":"tv_ooh-G05-T07","name":"Наружная реклама запущена","os":0,"oe":1,"r":"r2","result":"Владелец: Бренд · Норматив: T−0 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G06","t":{"id":"tv_ooh-G06-T01","name":"Просмотр первого раскадра","os":-35,"oe":-32,"r":"r2","result":"Владелец: Бренд · Норматив: T−35 · 3 дн.","own":["r2"]}},{"parent":"tv_ooh-G06","t":{"id":"tv_ooh-G06-T02","name":"Отправка раскадра ТВ-каналам","os":-34,"oe":-32,"r":"r2","result":"Владелец: Бренд · Норматив: T−34 · 2 дн.","own":["r2"]}},{"parent":"tv_ooh-G06","t":{"id":"tv_ooh-G06-T03","name":"Обратная связь от ТВ-каналов","os":-28,"oe":-25,"r":"r2","result":"Владелец: Бренд · Норматив: T−28 · 3 дн.","own":["r2"]}},{"parent":"tv_ooh-G06","t":{"id":"tv_ooh-G06-T04","name":"Сдача финальных материалов телеканалам","os":-14,"oe":-12,"r":"r2","result":"Владелец: Бренд · Норматив: T−14 · 2 дн.","own":["r2"]}},{"parent":"tv_ooh-G06","t":{"id":"tv_ooh-G06-T05","name":"Выход в ТВ","os":0,"oe":1,"r":"r2","result":"Владелец: Бренд · Норматив: T−0 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G07","t":{"id":"tv_ooh-G07-T01","name":"Составлена структура лендинга","os":-83,"oe":-83,"r":"r1","result":"Владелец: Промо · Норматив: T−83","own":["r1"]}},{"parent":"tv_ooh-G07","t":{"id":"tv_ooh-G07-T02","name":"Структура лендинга подготовлена и форма передана в Коммерцию","os":-80,"oe":-80,"r":"r1","result":"Владелец: Промо · Норматив: T−80","own":["r1"]}},{"parent":"tv_ooh-G07","t":{"id":"tv_ooh-G07-T03","name":"Товары переданы в креативную студию на отрисовку","os":-45,"oe":-45,"r":"r1","result":"Владелец: Промо · Норматив: T−45","own":["r1"]}},{"parent":"tv_ooh-G07","t":{"id":"tv_ooh-G07-T04","name":"Коммерция сдала заполненные подборки и бусты","os":-40,"oe":-40,"r":"r7","result":"Владелец: Коммерция · Норматив: T−40","own":["r7"]}},{"parent":"tv_ooh-G07","t":{"id":"tv_ooh-G07-T05","name":"Подборки собраны, бустинг настроен","os":-35,"oe":-35,"r":"r1","result":"Владелец: Промо · Норматив: T−35","own":["r1"]}},{"parent":"tv_ooh-G07","t":{"id":"tv_ooh-G07-T06","name":"Креативы переданы на сборку лендинга и БК","os":-30,"oe":-29,"r":"r3","result":"Владелец: Студия · Норматив: T−30 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G07","t":{"id":"tv_ooh-G07-T07","name":"Лендинг собран","os":-25,"oe":-25,"r":"r1","result":"Владелец: Промо · Норматив: T−25","own":["r1"]}},{"parent":"tv_ooh-G07","t":{"id":"tv_ooh-G07-T08","name":"Лендинг проверен и готов к запуску","os":-5,"oe":-5,"r":"r1","result":"Владелец: Промо · Норматив: T−5","own":["r1"]}},{"parent":"tv_ooh-G07","t":{"id":"tv_ooh-G07-T09","name":"Лендинг запущен","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"tv_ooh-G08","t":{"id":"tv_ooh-G08-T01","name":"Коммерция заполнила Х и СХ на первый флайт","os":-14,"oe":-14,"r":"r7","result":"Владелец: Коммерция · Норматив: T−14","own":["r7"]}},{"parent":"tv_ooh-G08","t":{"id":"tv_ooh-G08-T02","name":"Х и СХ собраны из Микросервиса","os":-8,"oe":-8,"r":"r1","result":"Владелец: Промо · Норматив: T−8","own":["r1"]}},{"parent":"tv_ooh-G08","t":{"id":"tv_ooh-G08-T03","name":"Готовы креативы для заведения акции","os":-5,"oe":-4,"r":"r3","result":"Владелец: Студия · Норматив: T−5 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G08","t":{"id":"tv_ooh-G08-T04","name":"Акция селлера заведена","os":-5,"oe":-5,"r":"r1","result":"Владелец: Промо · Норматив: T−5","own":["r1"]}},{"parent":"tv_ooh-G08","t":{"id":"tv_ooh-G08-T05","name":"Проверены цены, ссылки и состав Х/СХ перед запуском","os":-1,"oe":-1,"r":"r1","result":"Владелец: Промо · Норматив: T−1","own":["r1"]}},{"parent":"tv_ooh-G08","t":{"id":"tv_ooh-G08-T06","name":"Промо-подборка с Х и СХ запущена","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T01","name":"Финализированы механики и подборки Global/Joom","os":-30,"oe":-30,"r":"r1","result":"Владелец: Промо · Норматив: T−30","own":["r1"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T02","name":"Подготовлена концепция от бренд-команды","os":-30,"oe":-28,"r":"r2","result":"Владелец: Бренд · Норматив: T−30 · 2 дн.","own":["r2"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T03","name":"Поставлен бриф от бренда в креативную студию","os":-28,"oe":-27,"r":"r2","result":"Владелец: Бренд · Норматив: T−28 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T04","name":"Подготовлен план главной In-App","os":-25,"oe":-25,"r":"r1","result":"Владелец: Промо · Норматив: T−25","own":["r1"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T05","name":"Подготовлен план размещений CRM","os":-25,"oe":-24,"r":"r2","result":"Владелец: Бренд · Норматив: T−25 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T06","name":"Подготовлен план размещений SMM","os":-25,"oe":-24,"r":"r2","result":"Владелец: Бренд · Норматив: T−25 · 1 дн.","own":["r2"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T07","name":"Креативы просмотрены и согласованы командой","os":-10,"oe":-9,"r":"r3","result":"Владелец: Студия · Норматив: T−10 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T08","name":"Креативы переданы на сборку","os":-7,"oe":-6,"r":"r3","result":"Владелец: Студия · Норматив: T−7 · 1 дн.","own":["r3"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T09","name":"Сборка завершена и проверена","os":-2,"oe":-2,"r":"r1","result":"Владелец: Промо · Норматив: T−2","own":["r1"]}},{"parent":"tv_ooh-G09","t":{"id":"tv_ooh-G09-T10","name":"Global/Joom запущен","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"tv_ooh-G10","t":{"id":"tv_ooh-G10-T01","name":"Подготовлены презентации с категориями для селлеров","os":-45,"oe":-45,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−45","own":["r8"]}},{"parent":"tv_ooh-G10","t":{"id":"tv_ooh-G10-T02","name":"Подготовлены материалы / POSM для ПВЗ","os":-14,"oe":-14,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−14","own":["r8"]}},{"parent":"tv_ooh-G10","t":{"id":"tv_ooh-G10-T03","name":"Готовы листовки для ПВЗ","os":-7,"oe":-7,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−7","own":["r8"]}},{"parent":"tv_ooh-G10","t":{"id":"tv_ooh-G10-T04","name":"Материалы ПВЗ размещены к старту промо","os":0,"oe":0,"r":"r8","result":"Владелец: B2B Marketing · Норматив: T−0","own":["r8"]}},{"parent":"tv_ooh-G11","t":{"id":"tv_ooh-G11-T01","name":"Подготовлен и согласован legal для диджитал-креативов и ПВЗ","os":-15,"oe":-15,"r":"r2","result":"Владелец: Бренд / Legal · Норматив: T−15","own":["r2","r9"]}},{"parent":"tv_ooh-G11","t":{"id":"tv_ooh-G11-T02","name":"Подготовлен и согласован legal для OOH","os":-15,"oe":-13,"r":"r2","result":"Владелец: Бренд / Legal · Норматив: T−15 · 2 дн.","own":["r2","r9"]}},{"parent":"tv_ooh-G11","t":{"id":"tv_ooh-G11-T03","name":"Подготовлен и согласован legal для ТВ-ролика","os":-15,"oe":-13,"r":"r2","result":"Владелец: Бренд / Legal · Норматив: T−15 · 2 дн.","own":["r2","r9"]}},{"parent":"tv_ooh-G12","t":{"id":"tv_ooh-G12-T01","name":"Согласована поддержка и баннеры в Uzum Bank","os":-30,"oe":-29,"r":"r2","result":"Владелец: Бренд / Финком · Норматив: T−30 · 1 дн.","own":["r2","r10"]}},{"parent":"tv_ooh-G12","t":{"id":"tv_ooh-G12-T02","name":"Согласованы размещения в Tezkor","os":-30,"oe":-29,"r":"r2","result":"Владелец: Бренд / Финком · Норматив: T−30 · 1 дн.","own":["r2","r10"]}},{"parent":"tv_ooh-G12","t":{"id":"tv_ooh-G12-T03","name":"Согласован PR-релиз / посев экосистемы","os":-25,"oe":-24,"r":"r2","result":"Владелец: Бренд / PR · Норматив: T−25 · 1 дн.","own":["r2","r11"]}},{"parent":"tv_ooh-G12","t":{"id":"tv_ooh-G12-T04","name":"Зафиксирована механика скидок по карте банка","os":-25,"oe":-25,"r":"r1","result":"Владелец: Промо / Финком · Норматив: T−25","own":["r1","r10"]}},{"parent":"tv_ooh-G13","t":{"id":"tv_ooh-G13-T01","name":"Настроен мониторинг ключевых метрик промо","os":-3,"oe":-3,"r":"r1","result":"Владелец: Промо · Норматив: T−3","own":["r1"]}},{"parent":"tv_ooh-G13","t":{"id":"tv_ooh-G13-T02","name":"Запуск: начат мониторинг факта","os":0,"oe":0,"r":"r1","result":"Владелец: Промо · Норматив: T−0","own":["r1"]}},{"parent":"tv_ooh-G13","t":{"id":"tv_ooh-G13-T03","name":"Получен постанализ промо","os":44,"oe":44,"r":"r1","result":"Владелец: Промо · Норматив: T−-44","own":["r1"]}}]}};
+const ACTIVE_FLOW = SCENARIOS[SCENARIO] || SCENARIOS.standard;
+const BLOCKS = ACTIVE_FLOW.blocks;
+const SEED_TASKS = ACTIVE_FLOW.tasks;
+
+// чанки функций живут ВНУТРИ блоков общего флоу (решение 10.09): у своего блока parent = id блока компании
+// anchor: {os, oe} — смещения от ПОСЛЕДНЕГО дня сезона (для блоков «идёт весь
+// сезон» и пост-сезонных). Ручная правка сроков перекрывает якорь: блок,
+// который кто-то передвинул, дальше стоит там, где его поставили.
+const effOff = id => {
+  const o = TOVR[id] || {}, t = byId[id] || {}, a = t.anchor || {};
+  const len = seasonLen();
+  const bos = a.os !== undefined ? len + a.os : t.os;
+  const boe = a.oe !== undefined ? len + a.oe : t.oe;
+  return {os: o.os !== undefined ? o.os : bos, oe: o.oe !== undefined ? o.oe : boe};
+};
+const parentOf = id => {
+  const nt = NEW_TASKS.find(x => x.t.id === id);
+  return nt ? nt.parent : null;
+};
+// ребёнок двигается — родительский блок растягивается следом (только вширь:
+// собственный объём родителя не сжимаем), и так вверх по всем предкам
+function envelopeUp(id) {
+  let cur = parentOf(id);
+  while (cur && byId[cur]) {
+    const p = effOff(cur);
+    let os = p.os, oe = p.oe;
+    for (const c of kidsOf(cur)) {
+      const co = effOff(c.id);
+      os = Math.min(os, co.os);
+      oe = Math.max(oe, co.oe);
+    }
+    if (os === p.os && oe === p.oe) break;
+    tset(cur, {os, oe});
+    cur = parentOf(cur);
+  }
+}
+// порядок строк = хронология (это обещано в FAQ): по началу работ, при равном — по закрытию
+const topLevel = () => [...BLOCKS, ...NEW_TASKS.filter(nt => !nt.parent).map(nt => nt.t)]
+  .filter(t => !isDeleted(t.id))
+  .sort((a, b) => { const x = effOff(a.id), y = effOff(b.id); return x.os - y.os || x.oe - y.oe; });
+const kidsOf = id => NEW_TASKS.filter(nt => nt.parent === id).map(nt => nt.t).filter(t => !isDeleted(t.id))
+  .sort((a, b) => { const x = effOff(a.id), y = effOff(b.id); return x.os - y.os || x.oe - y.oe; });
+
+// прошлые сезоны: старт и факты закрытия блоков (смещение от старта того сезона)
+const RETRO_SEASONS = [
+  {id:'bts2026', name:'Back to School 2026 · 1 августа — 7 сентября',
+   concl:'Выводы BTS вшиты в правила блоков:\n1. Владелец контроля трат — PB.12, PB.14.\n2. Таргеты в абсолютах, пересмотр после аномального месяца — PB.1.\n3. Один источник цифр и методологии — PB.9.\n4. Раздельные прогноз и планирование B2C/B2G — PB.3.\n5. План входа/выхода складу за два месяца, заявка в Зелёный коридор за месяц — PB.0, PB.6.\n6. Заморозка категорийного дерева в сезон — PB.2.\n7. Персональные предложения и CRM-цепочки готовы до старта, не в середине — PB.10.'},
+];
+
+// шкала: ключевые T-вехи плейбука (сгущение к старту — сознательное)
+// Шкала считается под текущую длину сезона, а не задана списком. Кандидаты идут
+// по приоритету (старт и финал сезона -> месяцы -> полумесяцы -> недели), и тик
+// ставится только если от уже принятых есть запас по ширине: иначе подписи дат
+// слипались в сплошную цифровую строку там, где план самый плотный.
+function ticks() {
+  const lo = OFF_MIN, hi = OFF_MAX(), len = seasonLen();
+  const inRange = d => d >= lo + 2 && d <= hi - 2;
+  const weeks = [], months = [], halves = [];
+  for (let d = 7; d <= hi; d += 7) weeks.push(d);
+  for (let d = -7; d >= lo; d -= 7) weeks.push(d);
+  for (let d = 30; d <= Math.max(hi, -lo); d += 30) months.push(d, -d);
+  for (let d = 15; d <= Math.max(hi, -lo); d += 15) halves.push(d, -d);
+  const byPriority = [0, len, ...months, ...halves, ...weeks].filter(inRange);
+  const minGapPct = 6.2;  // ~ ширина подписи «13.10»
+  const out = [];
+  for (const off of byPriority) {
+    if (out.includes(off)) continue;
+    if (out.some(o => Math.abs(pctOff(o) - pctOff(off)) < minGapPct)) continue;
+    out.push(off);
+  }
+  return out.sort((a, b) => a - b);
+}
+
+// материализуем смещения в даты текущего сезона — весь движок работает на датах
+function applySeasonDates() {
+  for (const t of Object.values(byId)) {
+    const o = effOff(t.id);
+    t.s = offToIso(o.os);
+    t.e = offToIso(o.oe);
+  }
+}
+
+// --- локальные правки (зеркалятся шимом хаба в Postgres с автором) ---
+// Ключ на СУЩНОСТЬ: spb-t:<id> — правки задачи (сроки/deps/владельцы/удаление),
+// spb-task:<id> — своя задача, spb-comments:<id>, spb-fields:<id>. Параллельные
+// правки РАЗНЫХ задач не затирают друг друга (LWW живёт на уровне одного ключа);
+// цепочка «кто/что/когда» — в /h/<slug> хаба.
+let LSOK = true;
+try { localStorage.length; } catch (e) { LSOK = false; }
+const TOVR = {};  // id -> {os, oe, dep: [...], own: [...], del: 1} (частично)
+const CM = {};
+try {
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.indexOf('spb-t:') === 0) TOVR[k.slice('spb-t:'.length)] = JSON.parse(localStorage.getItem(k));
+    if (k && k.indexOf('spb-comments:') === 0) {          // legacy-формат: массив на блок
+      const v = JSON.parse(localStorage.getItem(k));
+      if (v && v.length) CM[k.slice('spb-comments:'.length)] = v.map(c => Object.assign({legacy: 1}, c));
+    }
+    if (k && k.indexOf('spb-cm:') === 0) {                 // запись на ключ: не трётся при гонке
+      const v = JSON.parse(localStorage.getItem(k));
+      const cut = k.slice('spb-cm:'.length), at = cut.lastIndexOf(':');
+      if (v && at > 0) (CM[cut.slice(0, at)] = CM[cut.slice(0, at)] || []).push(Object.assign({cid: cut.slice(at + 1)}, v));
+    }
+  }
+} catch (e) {}
+const tset = (id, patch) => {
+  TOVR[id] = Object.assign({}, TOVR[id], patch);
+  try { localStorage.setItem('spb-t:' + id, JSON.stringify(TOVR[id])); } catch (e) {}
+};
+const addCm = (id, c) => {                 // новый комментарий — свой ключ
+  const cid = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  (CM[id] = CM[id] || []).push(Object.assign({cid}, c));
+  try { localStorage.setItem('spb-cm:' + id + ':' + cid, JSON.stringify(c)); } catch (e) {}
+};
+const dropCm = (id, c) => {
+  CM[id] = (CM[id] || []).filter(x => x !== c);
+  if (!CM[id].length) delete CM[id];
+  try {
+    if (c.cid) localStorage.removeItem('spb-cm:' + id + ':' + c.cid);
+    else {                                   // legacy-массив: переписываем остатком
+      const rest = (CM[id] || []).filter(x => x.legacy);
+      if (rest.length) localStorage.setItem('spb-comments:' + id, JSON.stringify(rest));
+      else localStorage.removeItem('spb-comments:' + id);
+    }
+  } catch (e) {}
+};
+const ID_RE = /PB\.\d+|N\d+/g;
+const parseDeps = s => [...new Set(String(s || '').match(ID_RE) || [])];
+const effDeps = id => (TOVR[id] && TOVR[id].dep) || parseDeps(byId[id] && byId[id].dep);
+const effOwners = id => (TOVR[id] && TOVR[id].own) || (byId[id] ? (byId[id].own || [byId[id].r]) : []);
+const isDeleted = id => !!(TOVR[id] && TOVR[id].del) || !!(byId[id] && byId[id].deleted);
+// поля карточки (образ результата, правила) — ключ на блок
+const FLD = {};
+try {
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.indexOf('spb-fields:') === 0) FLD[k.slice('spb-fields:'.length)] = JSON.parse(localStorage.getItem(k));
+    if (k && k.indexOf('spb-fld:') === 0) {              // поле на ключ: двое правят разные поля блока и не мешают
+      const cut = k.slice('spb-fld:'.length), at = cut.lastIndexOf(':');
+      if (at > 0) (FLD[cut.slice(0, at)] = FLD[cut.slice(0, at)] || {})[cut.slice(at + 1)] = JSON.parse(localStorage.getItem(k));
+    }
+  }
+} catch (e) {}
+const effFld = id => Object.assign({result: byId[id] && byId[id].result || '', rules: byId[id] && byId[id].rules || ''}, FLD[id] || {});
+const saveFld = (id, only) => {
+  if (!LSOK) return;
+  try {
+    for (const f of (only || ['result', 'rules'])) localStorage.setItem('spb-fld:' + id + ':' + f, JSON.stringify(FLD[id][f] || ''));
+  } catch (e) {}
+};
+// свои задачи: ключ spb-task:<id> = {parent, t} | {deleted: 1}
+const NEW_TASKS = [];
+const seenTaskIds = new Set();
+try {
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.indexOf('spb-task:') === 0) {
+      seenTaskIds.add(k.slice('spb-task:'.length));
+      const v = JSON.parse(localStorage.getItem(k));
+      if (v && v.t && v.t.id && !v.deleted && v.scenario === SCENARIO) NEW_TASKS.push(v);
+    }
+  }
+  NEW_TASKS.sort((a, b) => (a.t.ts || 0) - (b.t.ts || 0));
+} catch (e) {}
+// сид-подзадачи — впереди пользовательских; запись в spb-task:<id> (правка или
+// tombstone-удаление) перекрывает сид навсегда
+for (let i = SEED_TASKS.length - 1; i >= 0; i--)
+  if (!seenTaskIds.has(SEED_TASKS[i].t.id)) NEW_TASKS.unshift(SEED_TASKS[i]);
+const saveTask = nt => { try { nt.scenario = SCENARIO; localStorage.setItem('spb-task:' + nt.t.id, JSON.stringify(nt)); } catch (e) {} };
+const dropTask = id => { try { localStorage.setItem('spb-task:' + id, JSON.stringify({deleted: 1})); } catch (e) {} };
+
+const byId = {};
+for (const t of BLOCKS) byId[t.id] = t;
+for (const nt of NEW_TASKS) byId[nt.t.id] = nt.t;
+// раскрытие веток — ЛИЧНОЕ (sessionStorage шимом не зеркалится): чужой клик
+// не должен раскрывать/сворачивать дерево у всей команды
+let GOPEN = new Set();
+try { GOPEN = new Set(JSON.parse(sessionStorage.getItem('spb-open') || '[]')); } catch (e) {}
+const saveOpen = () => { try { sessionStorage.setItem('spb-open', JSON.stringify([...GOPEN])); } catch (e) {} };
+
+
+function clashesOf(id) {
+  const t = byId[id];
+  if (!t) return [];
+  const res = [];
+  const OVERLAP_OK = 7 * DAY; // нахлёст до недели — норм: конец одной подхватывается началом другой
+  for (const d of effDeps(id)) {
+    if (!byId[d] || byId[d].ongoing) continue;
+    if (Date.parse(t.s) < Date.parse(byId[d].e) - OVERLAP_OK) res.push({d, need: byId[d].e});
+  }
+  return res;
+}
+function ownerBg(id) {
+  const own = effOwners(id);
+  if (own.length <= 1) return RC[own[0]] || 'var(--muted)';
+  const stops = own.map((r, i) => `${RC[r]} ${i * 8}px ${(i + 1) * 8}px`).join(', ');
+  return `repeating-linear-gradient(135deg, ${stops})`;
+}
+
+let FILTER = null;
+try { FILTER = sessionStorage.getItem('spb-fn-filter') || null; } catch (e) {}
+const fnMatch = id => { const o = effOwners(id); return o.includes(FILTER) || o.includes('all'); };
+const subtreeMatch = id => fnMatch(id) || kidsOf(id).some(c => subtreeMatch(c.id));
+// блок чужой функции, но от него зависит что-то своё — показываем бледным:
+// без него не видно, чего ждём и кого задерживаем
+const ghostIds = () => {
+  const out = new Set();
+  if (!FILTER) return out;
+  for (const id of Object.keys(byId)) {
+    if (isDeleted(id) || !subtreeMatch(id)) continue;
+    for (const d of effDeps(id)) if (byId[d] && !subtreeMatch(d)) out.add(d);
+  }
+  return out;
+};
+function renderLegend() {
+  const host = document.getElementById('legendFns');
+  host.innerHTML = roleIds().map(id =>
+    `<span class="li fn" data-fn="${id}" role="button" tabindex="0"><span class="sw" style="background:${roleColor(id)}"></span><span>${esc(roleName(id))}</span></span>`
+  ).join('');
+  applyFilterUI();
+}
+const roleInUse = id => Object.keys(byId).some(tid => !isDeleted(tid) && effOwners(tid).includes(id));
+let rmColor = ROLE_PALETTE[0];
+function renderRolesModal() {
+  const list = document.getElementById('rmList');
+  list.innerHTML = roleIds().map(id => {
+    const builtin = !!BUILTIN_ROLES[id];
+    return `<div class="rm-row" data-role="${id}">`
+      + ROLE_PALETTE.map(c => `<span class="rm-sw${roleColor(id) === c ? ' on' : ''}" data-c="${c}" style="background:${c}" title="цвет"></span>`).slice(0, 0).join('')
+      + `<span class="rm-sw" data-pick="1" style="background:${roleColor(id)}" title="сменить цвет"></span>`
+      + `<input type="text" value="${esc(roleName(id))}" data-old="${esc(roleName(id))}">`
+      + (builtin ? '' : `<button class="rm-del" title="удалить функцию">удалить</button>`)
+      + `</div>`;
+  }).join('');
+  const pal = document.getElementById('rmPalette');
+  pal.innerHTML = ROLE_PALETTE.map(c =>
+    `<span class="rm-sw${rmColor === c ? ' on' : ''}" data-new="${c}" style="background:${c}"></span>`).join('');
+}
+document.getElementById('rolesBtn').addEventListener('click', () => {
+  document.getElementById('rmErr').textContent = '';
+  renderRolesModal();
+  document.getElementById('rolesmodal').hidden = false;
+});
+document.getElementById('rmClose').addEventListener('click', () => { document.getElementById('rolesmodal').hidden = true; });
+document.getElementById('rolesmodal').addEventListener('click', e => {
+  const M = document.getElementById('rolesmodal');
+  if (e.target === M) { M.hidden = true; return; }
+  const nsw = e.target.closest('.rm-sw[data-new]');
+  if (nsw) { rmColor = nsw.dataset.new; renderRolesModal(); return; }
+  const pick = e.target.closest('.rm-sw[data-pick]');
+  if (pick) {
+    const id = pick.closest('.rm-row').dataset.role;
+    const cur = ROLE_PALETTE.indexOf((ROLE_OVR[id] || {}).color || '');
+    const next = ROLE_PALETTE[(cur + 1) % ROLE_PALETTE.length];
+    ROLE_OVR[id] = Object.assign({}, ROLE_OVR[id], {color: next});
+    saveRole(id); renderRolesModal(); renderLegend(); build();
+    return;
+  }
+  const del = e.target.closest('.rm-del');
+  if (del) {
+    const id = del.closest('.rm-row').dataset.role;
+    if (roleInUse(id)) { document.getElementById('rmErr').textContent = 'функция назначена задачам — сначала сними её с задач'; return; }
+    ROLE_OVR[id] = {del: 1};
+    saveRole(id); renderRolesModal(); renderLegend(); build();
+  }
+});
+document.getElementById('rolesmodal').addEventListener('focusout', e => {
+  const inp = e.target.closest('.rm-row input[type="text"]');
+  if (!inp) return;
+  const id = inp.closest('.rm-row').dataset.role;
+  const name = inp.value.trim();
+  if (!name || name === inp.dataset.old) return;
+  ROLE_OVR[id] = Object.assign({}, ROLE_OVR[id], {name});
+  saveRole(id); renderLegend(); build();
+});
+document.getElementById('rmCreate').addEventListener('click', () => {
+  const name = document.getElementById('rmName').value.trim();
+  if (!name) { document.getElementById('rmErr').textContent = 'нужно название'; return; }
+  const id = 'r' + Date.now();
+  ROLE_OVR[id] = {name, color: rmColor};
+  saveRole(id);
+  document.getElementById('rmName').value = '';
+  renderRolesModal(); renderLegend(); build();
+  flash('функция «' + name + '» добавлена');
+});
+
+function applyFilterUI() {
+  const note = document.getElementById('fnnote');
+  if (note) {
+    note.hidden = !FILTER;
+    if (FILTER) note.innerHTML = `Пространство функции <b>${esc(roleName(FILTER))}</b>: её блоки и задачи. `
+      + 'Бледным — чужие блоки, которых она ждёт. Новая задача создаётся сразу на эту функцию; '
+      + 'весь план целиком — на вкладке «Компания».';
+  }
+  const lg = document.querySelector('.legend');
+  lg.classList.toggle('filtering', !!FILTER);
+  lg.querySelectorAll('.li.fn').forEach(el => el.classList.toggle('fon', el.dataset.fn === FILTER));
+}
+document.querySelector('.legend').addEventListener('click', e => {
+  const li = e.target.closest('.li.fn');
+  if (!li) return;
+  setTab(FILTER === li.dataset.fn ? 'gantt' : 'fn-' + li.dataset.fn);
+});
+document.querySelector('.legend').addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { const li = e.target.closest('.li.fn'); if (li) { e.preventDefault(); li.click(); } }
+});
+
+const g = document.getElementById('gantt');
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const shortId = id => { const m = String(id).match(/(?:^|-)(G\d+)(?:-(T\d+))?$/); return m ? (m[2] || m[1]) : id; };
+let tipData = [], tipEl = null, pinIdx = null;
+
+function factLines(t) {
+  if (!t.fact) return [];
+  return RETRO_SEASONS.filter(rs => t.fact[rs.id] !== undefined).map(rs => {
+    const f = t.fact[rs.id];
+    const gap = f - effOff(t.id).oe;  // сверяем с актуальным планом: после драга сидовый oe уже не норма
+    const d = gap > 0 ? `позже плана на ${gap} дн` : gap < 0 ? `раньше плана на ${-gap} дн` : 'в срок';
+    return ['Факт ' + rs.name.split(' · ')[0], `закрыт ${fmtT(f)} — план ${fmtT(effOff(t.id).oe)}, ${d}`];
+  });
+}
+
+function build() {
+  applySeasonDates();
+  tipData = [];
+  const tip = i => `data-tip="${i}" tabindex="0"`;
+
+  function taskRowHtml(t, lvl) {
+    const fld = effFld(t.id);
+    const cl = clashesOf(t.id);
+    const owners = effOwners(t.id);
+    const deps = (TOVR[t.id] && TOVR[t.id].dep) ? TOVR[t.id].dep : parseDeps(t.dep);
+    tipData.push({
+      id: t.id, name: t.name, blocking: !!t.blocking, ongoing: !!t.ongoing,
+      badges: [t.blocking ? 'блокирует' : null, cl.length ? 'разрыв' : null].filter(Boolean),
+      close: {t: fmtTd(t.e), d: fmt(t.e)},
+      start: {t: fmtTd(t.s), d: fmt(t.s)},
+      owners: owners.map(r => ({name: ROLES[r], color: RC[r]})),
+      facts: factLines(t).map(l => {
+        const m = /закрыт (\S+) — план (\S+), (.+)/.exec(l[1]) || [];
+        const n = (/(\d+) дн/.exec(l[1]) || [])[1];
+        const kind = /позже/.test(l[1]) ? 'late' : /раньше/.test(l[1]) ? 'early' : 'ontime';
+        return {season: l[0].replace('Факт ', ''), fact: m[1] || '', plan: m[2] || '',
+                delta: n ? (kind === 'late' ? '+' : '−') + n + ' дн' : 'в срок',
+                deltaWord: n ? (kind === 'late' ? 'позже на ' + n + ' дн' : 'раньше на ' + n + ' дн') : 'в срок', kind};
+      }),
+      result: fld.result, rules: fld.rules, deps,
+      clash: cl.map(c => `стартует раньше конца ${c.d} — ${c.d} закрывается ${fmtTd(c.need)}`).join('; ')
+    });
+    const bl = Math.max(pct(t.s), 0);
+    const w = Math.max(Math.min(pct(t.e), 100) - bl, 0.6);
+    const nc = (CM[t.id] || []).length;
+    const kids = kidsOf(t.id);
+    const chev = `<span class="chev" data-pid="${t.id}" title="${kids.length ? 'раскрыть подзадачи' : 'подзадач пока нет — «+ Новый блок» → внутрь этой задачи'}">${kids.length ? (GOPEN.has(t.id) ? '▾' : '▸') : ''}</span>`;
+    return `<div class="g-row${kids.length ? ' group-row' : ''}" data-tip="${tipData.length-1}" data-taskid="${t.id}"><div class="g-lcol" style="padding-left:${20 + lvl * 24}px">${chev}<span class="tid">${shortId(t.id)}</span><span class="tname">${t.name}</span>${t.blocking ? '<b class="blkb">блок</b>' : ''}${cl.length ? '<b class="clashb" title="старт раньше конца зависимости">!</b>' : ''}${nc ? `<span class="cbadge">${nc} комм.</span>` : ''}</div><div class="g-track">`
+      + `<span class="bar${t.blocking ? ' blocking' : ''}${clashesOf(t.id).length ? ' clash' : ''}" role="img" `
+      + `aria-label="${t.id} ${t.name}: закрыт к ${fmtTd(t.e)}, ${effOwners(t.id).map(r => ROLES[r]).join(' + ')}" ${tip(tipData.length-1)} `
+      + `style="left:${bl}%;width:${w}%;background:${ownerBg(t.id)}"></span></div></div>`;
+  }
+
+  const GHOSTS = ghostIds();
+  const parentsWithKids = Object.keys(byId).filter(id => !isDeleted(id) && kidsOf(id).length);
+  const allOpen = parentsWithKids.length > 0 && parentsWithKids.every(id => GOPEN.has(id));
+  const expBtn = parentsWithKids.length
+    ? `<button id="expAll" title="${allOpen ? 'свернуть' : 'раскрыть'} все подзадачи">${allOpen ? '▾▾' : '▸▸'}</button>` : '';
+  const axName = FILTER ? roleName(FILTER) : 'T-минус';
+  let html = '<div class="g-headrow g-months"><div class="g-lcol">'
+    + (FILTER ? `<span class="axdot" style="background:${roleColor(FILTER)}"></span>` : '')
+    + `<span class="axname">${esc(axName)}</span><span class="axsub" id="axSeason"></span>` + expBtn + '</div><div class="g-track">';
+  const TK = ticks();
+  for (const off of TK) html += `<span class="m" style="left:${pctOff(off)}%">${fmtT(off)}</span><span class="md" style="left:${pctOff(off)}%">${fmt(offToIso(off))}</span>`;
+  html += '</div></div>';
+
+  html += '<div class="g-body"><div class="g-lines">';
+  for (const off of TK) html += `<span class="vl" style="left:${pctOff(off)}%"></span>`;
+  html += `<span class="t0" style="left:${pctOff(0)}%"></span>`;
+  html += '</div>';
+
+  html += '<div class="secwrap">';
+  function renderTask(t, lvl) {
+    let h = taskRowHtml(t, lvl);
+    const kids = FILTER ? kidsOf(t.id).filter(c => subtreeMatch(c.id)) : kidsOf(t.id);
+    if (kids.length && (GOPEN.has(t.id) || FILTER)) for (const c of kids) h += renderTask(c, lvl + 1);
+    return h;
+  }
+  for (const t of topLevel()) {
+    if (FILTER && !subtreeMatch(t.id)) {
+      if (!GHOSTS.has(t.id)) continue;
+      html += `<div class="ghostwrap">${taskRowHtml(t, 0)}</div>`;   // чужой блок-зависимость
+      continue;
+    }
+    html += renderTask(t, 0);
+  }
+  html += '</div>';
+
+  html += '</div>';
+  g.innerHTML = html;
+  const ax = document.getElementById('axSeason');
+  if (ax) ax.textContent = 'даты: ' + SEASON.name;
+  tipEl = document.getElementById('tip');
+  if (!tipEl) {                       // живёт в body: fixed-слой поверх всего
+    tipEl = document.createElement('div');
+    tipEl.id = 'tip';
+    tipEl.className = 'tip';
+    document.body.appendChild(tipEl);
+  }
+  buildTable();
+  if (typeof stickHead === 'function') stickHead();
+  try { refreshAnno(); } catch (e) {}
+}
+
+function depsHtml(id) {
+  if (!byId[id]) return '';
+  const deps = effDeps(id);
+  const chips = deps.map(d =>
+    `<span class="dchip">${d}<a class="ddel" data-d="${d}" title="убрать зависимость">×</a></span>`).join('');
+  const taken = new Set([id, ...deps]);
+  const opts = Object.keys(byId).filter(x => !taken.has(x))
+    .map(x => `<option value="${x}">${x} — ${esc(byId[x].name)}</option>`).join('');
+  return `<div class="dwrap" data-id="${id}"><b>Стартуем после</b><div>${chips || '<span class="dnone">зависимостей нет</span>'}</div>`
+    + `<div class="drow"><select><option value="">+ добавить зависимость…</option>${opts}</select><button class="dadd">Добавить</button>`
+    + `${(TOVR[id] && TOVR[id].dep) ? '<button class="dreset" title="вернуть исходные">сброс</button>' : ''}</div></div>`;
+}
+
+function ownersHtml(id) {
+  if (!byId[id]) return '';
+  const own = effOwners(id);
+  const chips = Object.keys(ROLES).map(r =>
+    `<button class="ochip${own.includes(r) ? ' on' : ''}" data-r="${r}"><span class="odot" style="background:${RC[r]}"></span>${ROLES[r]}</button>`).join('');
+  return `<div class="owrap" data-id="${id}"><b>Ответственные (клик — включить/выключить)</b><div>${chips}</div></div>`;
+}
+
+function fieldsHtml(id) {
+  if (!byId[id]) return '';
+  const f = effFld(id);
+  return `<div class="fwrap" data-id="${id}"><b>Образ результата — что остаётся и где лежит</b>`
+    + `<textarea class="f-result" rows="2" placeholder="что должно остаться и ссылка на место (файл/дашборд)">${esc(f.result)}</textarea>`
+    + `<b style="margin-top:6px">Правила и критерии решения</b>`
+    + `<textarea class="f-rules" rows="2" placeholder="do’s and don’ts, критерии выбора">${esc(f.rules)}</textarea>`
+    + `<button class="fsave">Сохранить поля</button></div>`;
+}
+
+function commentsHtml(id) {
+  const list = (CM[id] || []).slice().sort((a, b) => (a.ts || 0) - (b.ts || 0)).map((c, i) =>
+    `<div class="cmt"><div class="cmt-body"><span class="cmt-ts">`
+    + `${new Date(c.ts).toLocaleString('ru-RU', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'})}`
+    + `${c.user ? ' · ' + esc(c.user) : ''}</span>${esc(c.text)}</div>`
+    + `<a class="cmt-del" data-ci="${i}" title="удалить">×</a></div>`).join('');
+  return `<div class="cwrap" data-id="${id}"><b>Комментарии</b>`
+    + (list ? `<div class="cmt-list">${list}</div>` : '<div class="cmt-none">пока нет</div>')
+    + `<textarea rows="2" placeholder="Комментарий к блоку…"></textarea><button class="cadd">Добавить</button>`
+    + `<div class="chint">сохраняется для всех, автор фиксируется</div></div>`;
+}
+
+function showTip(el, pin = false) {
+  const d = tipData[+el.dataset.tip];
+  if (!d) return;
+  if (pin) { showSheet(d); return; }   // клик раскрывает карточку во весь фрейм ганта
+  const cut = (s, n) => s.length > n ? esc(s.slice(0, n).replace(/\s+\S*$/, '')) + '…' : esc(s);
+  const stat = (k, v, sub, cls) => `<div class="t-stat"><div class="t-k">${k}</div>`
+    + `<div class="t-v${cls ? ' ' + cls : ''}">${v}</div>${sub ? `<div class="t-sub">${sub}</div>` : ''}</div>`;
+  const ownersV = d.owners.map(o =>
+    `<span class="t-own"><i class="t-odot" style="background:${o.color}"></i>${esc(o.name)}</span>`).join('');
+  tipEl.innerHTML =
+    `<div class="t-head"><span class="t-id">${d.id}</span><span class="t-title">${esc(d.name)}</span>`
+    + d.badges.map(b => `<span class="t-badge${b === 'разрыв' ? ' clash' : ''}">${b}</span>`).join('')
+    + (pin ? '<button class="t-close" aria-label="Закрыть">×</button>' : '') + '</div>'
+    + '<div class="t-stats">'
+      + stat(d.ongoing ? 'Идёт с' : 'Работы с', d.start.t, d.start.d)
+      + stat('Закрыть к', d.close.t, d.close.d)
+      + stat(d.owners.length > 1 ? 'Ответственные' : 'Ответственный', ownersV, '', 'small')
+    + '</div>'
+    + d.facts.map(f => `<div class="t-fact"><span class="t-fk">Факт ${esc(f.season)}:</span>`
+        + `закрыт <b>${f.fact}</b> при плане ${f.plan}<span class="t-delta ${f.kind}">${esc(f.delta)}</span></div>`).join('')
+    + '<div class="t-body">'
+      + (pin ? '' : (d.result ? `<div class="t-sec"><div class="t-h">Что остаётся</div><div class="t-b">${cut(d.result, 190)}</div></div>` : '')
+             + (d.rules ? `<div class="t-sec"><div class="t-h">Правила</div><div class="t-b">${cut(d.rules, 190)}</div></div>` : ''))
+      + (!pin && d.deps.length ? `<div class="t-sec"><div class="t-h">Стартуем после</div><div class="t-b">${esc(d.deps.join(', '))}</div></div>` : '')
+      + (d.clash ? `<div class="t-warn">Разрыв: ${esc(d.clash)}</div>` : '')
+      + (pin && d.id ? fieldsHtml(d.id) + ownersHtml(d.id) + depsHtml(d.id) + commentsHtml(d.id)
+          + `<div class="t-actions"><button class="t-addchild" data-task="${d.id}">+ дочерний блок</button>`
+          + `<button class="t-del" data-task="${d.id}">Удалить блок</button></div>`
+        : '<div class="t-hint">клик по строке — открыть карточку и править</div>')
+    + '</div>';
+  tipEl.classList.toggle('pinned', pin);
+  tipEl.style.display = 'block';
+  const anchor = el.classList.contains('g-row') ? (el.querySelector('.bar') || el) : el;
+  const er = anchor.getBoundingClientRect();
+  const w = tipEl.offsetWidth, h = tipEl.offsetHeight, pad = 10;
+  let x = er.left + er.width / 2 - w / 2;
+  x = Math.max(pad, Math.min(x, window.innerWidth - w - pad));
+  let y = er.top - h - 8;                       // по умолчанию над полосой
+  if (y < pad) y = er.bottom + 8;               // не влезает сверху — под полосу
+  if (y + h > window.innerHeight - pad)         // не влезает снизу — прижимаем к окну
+    y = Math.max(pad, window.innerHeight - h - pad);
+  tipEl.style.left = x + 'px'; tipEl.style.top = y + 'px';
+}
+
+// --- карточка блока во весь фрейм ганта (клик по строке) ---
+const sheetEl = document.getElementById('sheet');
+
+function sheetRailHtml(d) {
+  const o = effOff(d.id), lo = OFF_MIN, hi = OFF_MAX();
+  const p = off => ((off - lo) / (hi - lo)) * 100;
+  const left = Math.max(p(o.os), 0), right = Math.min(p(o.oe), 100);
+  const mid = (left + right) / 2;
+  return '<div class="sh-rail">'
+    + '<span class="sh-line"></span>'
+    + `<span class="sh-t0" style="left:${p(0)}%"></span>`
+    + `<span class="sh-cap edge" style="left:0">${fmtT(lo)}</span>`
+    + `<span class="sh-cap" style="left:${p(0)}%">старт ${fmt(offToIso(0))}</span>`
+    + `<span class="sh-t0" style="left:${p(seasonLen())}%;opacity:.3"></span>`
+    + `<span class="sh-cap" style="left:${p(seasonLen())}%">финиш ${fmt(offToIso(seasonLen()))}</span>`
+    + `<span class="sh-cap edge right" style="right:0">${fmtT(hi)}</span>`
+    + `<span class="sh-bar" style="left:${left}%;width:${Math.max(right - left, 0.8)}%;background:${ownerBg(d.id)}"></span>`
+    + `<span class="sh-barcap" style="left:${mid}%">${fmtT(o.os)} → ${fmtT(o.oe)}</span>`
+    + (d.facts[0] ? `<span class="sh-fact-tick" style="left:${p(byId[d.id].fact[RETRO_SEASONS[0].id])}%" `
+        + `title="факт прошлого сезона"></span>` : '')
+    + '</div>';
+}
+
+function showSheet(d) {
+  const o = effOff(d.id), dur = o.oe - o.os;
+  const f = d.facts[0];
+  const kids = kidsOf(d.id);
+  const stat = (k, v, sub, cls) => `<div class="sh-stat"><div class="sh-k">${k}</div>`
+    + `<div class="sh-v${cls ? ' ' + cls : ''}">${v}</div>${sub ? `<div class="sh-sub">${sub}</div>` : ''}</div>`;
+  sheetEl.innerHTML =
+    `<div class="sh-head"><div><div class="sh-id">${d.id}</div><div class="sh-title">${esc(d.name)}</div></div>`
+      + d.badges.map(b => `<span class="sh-badge${b === 'разрыв' ? ' clash' : ''}">${b}</span>`).join('')
+      + '<button class="sh-close t-close" aria-label="Закрыть карточку" title="Закрыть">×</button></div>'
+    + `<div class="sh-track">${sheetRailHtml(d)}</div>`
+    + '<div class="sh-stats">'
+      + stat(d.ongoing ? 'Идёт с' : 'Работы с', d.start.t, fmt(offToIso(o.os)) + ' · ' + dur + ' дн работ')
+      + stat('Закрыть к', d.close.t, fmt(offToIso(o.oe)))
+      + (f ? stat('В прошлый сезон',
+                  `<span class="sh-delta ${f.kind}">${esc(f.deltaWord)}</span>`,
+                  `факт ${f.fact} при плане ${f.plan}`)
+           : stat('В прошлый сезон', '<span class="sh-none">не проходили</span>', '', 'mini'))
+    + '</div>'
+    + '<div class="sh-body">'
+      + '<div class="sh-col">'
+        + `<div class="sh-sec">${fieldsHtml(d.id)}</div>`
+        + `<div class="sh-sec">${commentsHtml(d.id)}</div>`
+      + '</div>'
+      + '<div class="sh-col">'
+        + `<div class="sh-sec">${ownersHtml(d.id)}</div>`
+        + `<div class="sh-sec">${depsHtml(d.id)}</div>`
+        + '<div class="sh-sec"><div class="sh-h">Подзадачи</div>'
+          + (kids.length ? `<div class="sh-kids">${kids.map(k => {
+              const ko = effOff(k.id);
+              return `<div class="sh-kid"><span class="sh-kid-id">${k.id}</span><span>${esc(k.name)}</span>`
+                + `<span class="sh-kid-t">${fmtT(ko.os)} → ${fmtT(ko.oe)}</span></div>`;
+            }).join('')}</div>` : '<div class="sh-none">подзадач нет</div>')
+        + '</div>'
+        + `<div class="sh-sec t-actions"><button class="t-addchild" data-task="${d.id}">+ дочерний блок</button>`
+          + `<button class="t-del" data-task="${d.id}">Удалить блок</button></div>`
+      + '</div>'
+    + '</div>';
+  sheetEl.hidden = false;
+  if (tipEl) tipEl.style.display = 'none';
+  sheetEl.scrollTop = 0;
+}
+
+function unpin() { pinIdx = null; if (tipEl) { tipEl.classList.remove('pinned'); tipEl.style.display = 'none'; } if (sheetEl) sheetEl.hidden = true; }
+function repin() {
+  if (pinIdx === null) return;
+  const el = g.querySelector(`.g-row[data-tip="${pinIdx}"]`) || g.querySelector(`[data-tip="${pinIdx}"]`);
+  if (el) showTip(el, true); else unpin();
+}
+
+g.addEventListener('mouseover', e => { if (pinIdx !== null) return; const t = e.target.closest('[data-tip]'); if (t) showTip(t); });
+g.addEventListener('mouseout', e => { if (pinIdx !== null) return; if (e.target.closest('[data-tip]')) tipEl.style.display = 'none'; });
+g.addEventListener('focusin', e => { if (pinIdx !== null) return; const t = e.target.closest('[data-tip]'); if (t) showTip(t); });
+g.addEventListener('focusout', () => { if (pinIdx === null) tipEl.style.display = 'none'; });
+
+document.addEventListener('click', e => {
+  if (e.target.closest('.t-close')) { unpin(); return; }
+  const fs = e.target.closest('.fsave');
+  if (fs) {
+    const w = fs.closest('.fwrap'), id = w.dataset.id;
+    const was = effFld(id);
+    const now = {result: w.querySelector('.f-result').value.trim(), rules: w.querySelector('.f-rules').value.trim()};
+    const changed = ['result', 'rules'].filter(f => now[f] !== was[f]);
+    FLD[id] = Object.assign({}, FLD[id], now);
+    saveFld(id, changed.length ? changed : ['result', 'rules']);   // пишем только тронутое поле
+    const p = pinIdx; build(); pinIdx = p; repin(); flash('поля блока сохранены');
+    return;
+  }
+  const add = e.target.closest('.cadd');
+  if (add) {
+    const w = add.closest('.cwrap'), ta = w.querySelector('textarea'), txt = ta.value.trim();
+    if (!txt) return;
+    addCm(w.dataset.id, {text: txt, ts: Date.now(), user: (window.__HUB || {}).user || ''});
+    const p = pinIdx; build(); pinIdx = p; repin();
+    return;
+  }
+  const del = e.target.closest('.cmt-del');
+  if (del) {
+    const w = del.closest('.cwrap');
+    dropCm(w.dataset.id, CM[w.dataset.id][+del.dataset.ci]);
+    const p = pinIdx; build(); pinIdx = p; repin();
+    return;
+  }
+  const dd = e.target.closest('.ddel');
+  if (dd) {
+    const id = dd.closest('.dwrap').dataset.id;
+    tset(id, {dep: effDeps(id).filter(x => x !== dd.dataset.d)});
+    const p = pinIdx; build(); pinIdx = p; repin();
+    return;
+  }
+  const da = e.target.closest('.dadd');
+  if (da) {
+    const w = da.closest('.dwrap'), sel = w.querySelector('select');
+    if (!sel.value) return;
+    tset(w.dataset.id, {dep: [...effDeps(w.dataset.id), sel.value]});
+    const p = pinIdx; build(); pinIdx = p; repin();
+    return;
+  }
+  const dr = e.target.closest('.dreset');
+  if (dr) {
+    tset(dr.closest('.dwrap').dataset.id, {dep: undefined});
+    const p = pinIdx; build(); pinIdx = p; repin();
+    return;
+  }
+  const ac = e.target.closest('.t-addchild');
+  if (ac) {
+    unpin();
+    openAddModal(ac.dataset.task);
+    return;
+  }
+  const td = e.target.closest('.t-del');
+  if (td) {
+    const id = td.dataset.task;
+    if (!confirm('Удалить «' + (byId[id] ? byId[id].name : id) + '»? Подзадачи переедут уровнем выше; всё восстановимо через историю.')) return;
+    const i = NEW_TASKS.findIndex(x => x.t.id === id);
+    const parentOfDeleted = i >= 0 ? (NEW_TASKS[i].parent || null) : null;
+    for (const nt of NEW_TASKS) if (nt.parent === id) { nt.parent = parentOfDeleted; saveTask(nt); }
+    if (i >= 0) { NEW_TASKS.splice(i, 1); dropTask(id); delete byId[id]; }
+    else tset(id, {del: 1});
+    unpin(); build(); flash('блок ' + id + ' удалён (восстановление — через историю)');
+    return;
+  }
+  const oc = e.target.closest('.ochip');
+  if (oc && oc.closest('.owrap')) {
+    const id = oc.closest('.owrap').dataset.id, r = oc.dataset.r;
+    let own = [...effOwners(id)];
+    if (own.includes(r)) { if (own.length === 1) return; own = own.filter(x => x !== r); }
+    else own.push(r);
+    tset(id, {own});
+    const p = pinIdx; build(); pinIdx = p; repin();
+    return;
+  }
+  const ea = e.target.closest('#expAll');
+  if (ea) {
+    const parents = Object.keys(byId).filter(id => !isDeleted(id) && kidsOf(id).length);
+    const allOpen = parents.every(id => GOPEN.has(id));
+    GOPEN = allOpen ? new Set() : new Set(parents);
+    saveOpen();
+    unpin(); build();
+    return;
+  }
+  const ch = e.target.closest('.chev');
+  if (ch && ch.dataset.pid && kidsOf(ch.dataset.pid).length) {
+    const pid = ch.dataset.pid;
+    GOPEN.has(pid) ? GOPEN.delete(pid) : GOPEN.add(pid);
+    saveOpen();
+    unpin(); build();
+    return;
+  }
+  if (e.target.closest('#tip, #sheet')) return;   // клик внутри карточки — работа в ней, а не закрытие
+  if (!window.getSelection().isCollapsed) return;
+  if (dragged) { dragged = false; return; }
+  const row = e.target.closest('[data-tip]');
+  if (row && g.contains(row)) { pinIdx = +row.dataset.tip; showTip(row, true); }
+  else if (pinIdx !== null) unpin();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') unpin(); });
+
+// --- перетаскивание полос (движок AMP: внутри миллисекунды, при сохранении — T-смещения) ---
+const isoD = ms => new Date(ms).toISOString().slice(0, 10);
+let drag = null, dragged = false;
+g.addEventListener('mousedown', e => {
+  const bar = e.target.closest('.bar');
+  if (!bar) return;
+  const row = bar.closest('.g-row'), id = row && row.dataset.taskid;
+  if (!id) return;
+  const r = bar.getBoundingClientRect();
+  const edge = e.clientX <= r.left + 8 ? 'l' : e.clientX >= r.right - 8 ? 'r' : 'm';
+  const track = bar.parentElement.getBoundingClientRect();
+  const pms = T0() + (T1() - T0()) * (e.clientX - track.left) / track.width;
+  drag = {bar, id, edge, track, x0: e.clientX,
+    grab: pms - Date.parse(byId[id].s), dur: Date.parse(byId[id].e) - Date.parse(byId[id].s)};
+  e.preventDefault();
+});
+document.addEventListener('mousemove', e => {
+  if (!drag) {
+    const bar = e.target.closest && e.target.closest('.bar');
+    if (bar && bar.closest('.g-row') && bar.closest('.g-row').dataset.taskid) {
+      const r = bar.getBoundingClientRect();
+      bar.style.cursor = (e.clientX <= r.left + 8 || e.clientX >= r.right - 8) ? 'ew-resize' : 'grab';
+    }
+    return;
+  }
+  if (!dragged && Math.abs(e.clientX - drag.x0) < 3) return;
+  dragged = true;
+  const t = byId[drag.id];
+  const p = Math.max(0, Math.min(100, (e.clientX - drag.track.left) / drag.track.width * 100));
+  const ms = Math.round((T0() + (T1() - T0()) * p / 100) / DAY) * DAY;
+  if (drag.edge === 'l') { if (ms <= Date.parse(t.e) - 2 * DAY) t.s = isoD(ms); }
+  else if (drag.edge === 'r') { if (ms >= Date.parse(t.s) + 2 * DAY) t.e = isoD(ms); }
+  else {
+    let ns = Math.round((T0() + (T1() - T0()) * p / 100 - drag.grab) / DAY) * DAY;
+    const maxS = drag.dur > (T1() - T0()) - 14 * DAY ? T1() - 14 * DAY : T1() - drag.dur;
+    ns = Math.max(T0(), Math.min(ns, maxS));
+    t.s = isoD(ns); t.e = isoD(ns + drag.dur);
+  }
+  const dbl = Math.max(pct(t.s), 0);
+  drag.bar.style.left = dbl + '%';
+  drag.bar.style.width = Math.max(Math.min(pct(t.e), 100) - dbl, 0.6) + '%';
+});
+document.addEventListener('mouseup', () => {
+  if (drag && dragged) {
+    const t = byId[drag.id];
+    tset(drag.id, {os: isoToOff(t.s), oe: isoToOff(t.e)});
+    envelopeUp(drag.id);
+    const p = pinIdx; unpin(); build(); pinIdx = p; repin();
+  }
+  drag = null;
+  setTimeout(() => { dragged = false; }, 0);
+});
+
+// --- тулбар ---
+if (!LSOK) flash('браузер не сохраняет правки — обнови страницу или смени браузер');
+// цепочка изменений (кто/что/когда) — страница истории хаба
+if ((window.__HUB || {}).artifact) {
+  const h = document.getElementById('histLink');
+  h.href = '/h/' + encodeURIComponent(window.__HUB.artifact);
+  h.hidden = false;
+}
+document.getElementById('btnFaq').addEventListener('click', () => {
+  const f = document.getElementById('faqPanel');
+  f.hidden = !f.hidden;
+});
+function flash(t) { const s = document.getElementById('toolmsg'); s.textContent = t; setTimeout(() => { s.textContent = ''; }, 3500); }
+
+// --- сезон-переключатель ---
+const snEl = document.getElementById('seasonName'), ssEl = document.getElementById('seasonStart');
+const seEl = document.getElementById('seasonEnd');
+const scEl = document.getElementById('scenarioSelect');
+scEl.value = SCENARIO;
+scEl.addEventListener('change', () => { localStorage.setItem('promo-scenario', scEl.value); location.reload(); });
+snEl.value = SEASON.name; ssEl.value = SEASON.start; seEl.value = SEASON.end;
+function saveSeason() {
+  const start = ssEl.value || SEASON.start;
+  let end = seEl.value || SEASON.end;
+  if (Math.round((Date.parse(end) - Date.parse(start)) / DAY) < 7) {   // конец раньше старта — берём длину прошлого сезона
+    end = new Date(Date.parse(start) + seasonLen() * DAY).toISOString().slice(0, 10);
+    seEl.value = end;
+    flash('последний день должен быть хотя бы на неделю позже первого — подставил прежнюю длину сезона');
+  }
+  SEASON = {name: snEl.value.trim() || SEASON.name, start, end};
+  try { localStorage.setItem('spb-season', JSON.stringify(SEASON)); } catch (e) {}
+  build(); renderRetro();
+}
+snEl.addEventListener('change', saveSeason);
+ssEl.addEventListener('change', saveSeason);
+seEl.addEventListener('change', saveSeason);
+
+// --- вводная ---
+const introEl = document.getElementById('intro');
+try { introEl.textContent = JSON.parse(localStorage.getItem('spb-intro') || '""'); } catch (e) {}
+introEl.addEventListener('blur', () => {
+  try { localStorage.setItem('spb-intro', JSON.stringify(introEl.innerText.trim())); } catch (e) {}
+});
+
+// --- создание своего блока ---
+const addM = document.getElementById('addmodal');
+function openAddModal(parentId) {
+  const opts = [];
+  (function walk(list, pad) {
+    for (const t of list) {
+      opts.push(`<option value="${t.id}">${pad}внутрь ${t.id} — ${esc(t.name)}</option>`);
+      walk(kidsOf(t.id), pad + '\u00a0\u00a0\u00a0');
+    }
+  })(topLevel(), '');
+  document.getElementById('amSec').innerHTML = '<option value="">Верхний уровень — общий флоу компании</option>' + opts.join('');
+  // на вкладке функции новая задача сразу её: не нужно вспоминать про чип
+  document.getElementById('amOwn').innerHTML = Object.keys(ROLES).map(r =>
+    `<button type="button" class="ochip amchip${r === FILTER ? ' on' : ''}" data-r="${r}">`
+    + `<span class="odot" style="background:${RC[r]}"></span>${ROLES[r]}</button>`).join('');
+  document.getElementById('amErr').textContent = '';
+  addM.hidden = false;
+  document.getElementById('amName').focus();
+  if (parentId && byId[parentId]) {
+    const sel = document.getElementById('amSec');
+    sel.value = parentId;
+    sel.dispatchEvent(new Event('change'));
+  }
+}
+document.getElementById('btnAdd').addEventListener('click', () => openAddModal(null));
+// подзадача наследует тайминг родителя (можно поправить руками до создания)
+document.getElementById('amSec').addEventListener('change', e => {
+  const pid = e.target.value;
+  if (!pid || !byId[pid]) return;
+  const o = effOff(pid);
+  document.getElementById('amT').value = -o.oe;
+  document.getElementById('amDur').value = o.oe - o.os;
+});
+document.getElementById('amClose').addEventListener('click', () => { addM.hidden = true; });
+addM.addEventListener('click', e => {
+  if (e.target === addM) { addM.hidden = true; return; }
+  const oc = e.target.closest('.amchip');
+  if (oc) oc.classList.toggle('on');
+});
+document.getElementById('amCreate').addEventListener('click', () => {
+  const err = m => { document.getElementById('amErr').textContent = m; };
+  const v = id => document.getElementById(id).value.trim();
+  const name = v('amName'), tT = v('amT'), tDur = v('amDur');
+  const parent = document.getElementById('amSec').value || null;
+  const own = [...document.querySelectorAll('#amOwn .amchip.on')].map(b => b.dataset.r);
+  if (!name) return err('нужно название');
+  const oe = -parseInt(tT, 10), dur = parseInt(tDur, 10);
+  if (!isFinite(oe) || !isFinite(dur) || dur < 1) return err('нужны T-минус закрытия и длительность в днях');
+  if (oe < OFF_MIN + 1 || oe > OFF_MAX()) return err('за пределами шкалы: закрытие от ' + fmtT(OFF_MIN + 1) + ' до ' + fmtT(OFF_MAX()));
+  if (oe - dur < OFF_MIN) return err('начало уезжает за шкалу: при закрытии ' + fmtT(oe) + ' длительность не больше ' + (oe - OFF_MIN) + ' дн');
+  if (!own.length) return err('выбери хотя бы одну функцию');
+  let n = 1;
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const m = /^spb-task:N(\d+)$/.exec(localStorage.key(i) || '');
+      if (m) n = Math.max(n, +m[1] + 1);
+    }
+  } catch (err) {}
+  const t = {id: 'N' + n, name, os: oe - dur, oe, r: own[0], custom: 1, ts: Date.now()};
+  if (v('amDep')) t.dep = v('amDep');
+  if (v('amRes')) t.result = v('amRes');
+  if (v('amRules')) t.rules = v('amRules');
+  if (document.getElementById('amBlk').checked) t.blocking = 1;
+  const nt = {parent, t};
+  NEW_TASKS.push(nt);
+  byId[t.id] = t;
+  saveTask(nt);
+  if (parent) { GOPEN.add(parent); saveOpen(); envelopeUp(t.id); }
+  if (own.length > 1) tset(t.id, {own});
+  addM.hidden = true;
+  ['amName','amT','amDur','amDep','amRes','amRules'].forEach(i => { document.getElementById(i).value = ''; });
+  document.getElementById('amBlk').checked = false;
+  build();
+  flash('блок ' + t.id + ' добавлен');
+});
+
+// --- ретро сезонов: фидбек — ключ на запись (параллельные авторы не трутся), выводы — сводное поле ---
+const FB = {};
+try {
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.indexOf('spb-fb:') === 0) {
+      const e = JSON.parse(localStorage.getItem(k));
+      if (e && e.id) (FB[e.rid] = FB[e.rid] || []).push(e);
+    }
+  }
+  for (const rid of Object.keys(FB)) FB[rid].sort((a, b) => (a.ts || 0) - (b.ts || 0));
+} catch (e) {}
+const saveFbEntry = e => { try { localStorage.setItem('spb-fb:' + e.rid + ':' + e.id, JSON.stringify(e)); } catch (e2) {} };
+const delFbEntry = e => { try { localStorage.removeItem('spb-fb:' + e.rid + ':' + e.id); } catch (e2) {} };
+const RETRO_OVR = {};
+try {
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.indexOf('spb-retro:') === 0) RETRO_OVR[k.slice('spb-retro:'.length)] = JSON.parse(localStorage.getItem(k));
+  }
+} catch (e) {}
+function fbItemHtml(e) {
+  return `<div class="fb-item" data-fbid="${e.id}">`
+    + `<span class="fb-tag ${e.kind}">${e.kind === 'ok' ? 'было ок' : 'было не ок'}</span>`
+    + `<span class="fb-what">${esc(e.what)}</span>`
+    + `<div class="fb-prop"><b>Как сделать лучше:</b> ${esc(e.prop)}</div>`
+    + `<div class="fb-meta">${e.user ? esc(e.user) + ' · ' : ''}${new Date(e.ts).toLocaleString('ru-RU', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'})}<a class="fb-del" title="удалить">×</a></div></div>`;
+}
+function renderRetro() {
+  const host = document.getElementById('retro');
+  host.innerHTML = RETRO_SEASONS.map(rs => {
+    const o = Object.assign({concl: rs.concl || ''}, RETRO_OVR[rs.id] || {});
+    // план→факт по блокам здесь НЕ показываем: факт живёт в карточке блока на
+    // ганте, вкладка фидбека — для записей участников (вердикт юзера 14.09)
+    const items = (FB[rs.id] || []).map(fbItemHtml).join('');
+    return `<div class="retro" data-rid="${rs.id}"><h3>${esc(rs.name)}</h3>`
+      + `<div class="blk-h">Фидбек участников — каждая запись отдельной строкой, автор фиксируется</div>`
+      + (items || '<div class="fb-none">пока пусто — добавь первую запись формой ниже</div>')
+      + `<div class="fb-form">`
+      + `<select class="fb-kind"><option value="notok">было не ок</option><option value="ok">было ок</option></select>`
+      + `<div><div class="fb-req">Что было <i>*</i></div><textarea class="fb-what-in" rows="2" placeholder="что именно наблюдал в этом сезоне"></textarea></div>`
+      + `<div><div class="fb-req">Предложение, как сделать лучше <i>*</i></div><textarea class="fb-prop-in" rows="2" placeholder="что изменить в следующем сезоне (для «было ок» — как закрепить)"></textarea></div>`
+      + `<button class="fb-add">Записать фидбек</button></div>`
+      + `<div class="rgrid" style="margin-top:14px">`
+      + `<div class="rfield"><div class="blk-h">Выводы на будущие сезоны — сводит владелец сезонного ОКР из фидбека выше</div><div class="rval" contenteditable="true" data-f="concl" data-ph="что меняем со следующего сезона">${esc(o.concl)}</div></div>`
+      + `</div></div>`;
+  }).join('');
+}
+document.getElementById('retro').addEventListener('click', e => {
+  const add = e.target.closest('.fb-add');
+  if (add) {
+    const card = add.closest('.retro');
+    const what = card.querySelector('.fb-what-in'), prop = card.querySelector('.fb-prop-in');
+    what.classList.toggle('miss', !what.value.trim());
+    prop.classList.toggle('miss', !prop.value.trim());
+    if (!what.value.trim() || !prop.value.trim()) return;
+    const entry = {id: 'f' + Date.now(), rid: card.dataset.rid, kind: card.querySelector('.fb-kind').value,
+      what: what.value.trim(), prop: prop.value.trim(), user: (window.__HUB || {}).user || '', ts: Date.now()};
+    (FB[entry.rid] = FB[entry.rid] || []).push(entry);
+    saveFbEntry(entry);
+    renderRetro();
+    return;
+  }
+  const del = e.target.closest('.fb-del');
+  if (del) {
+    const rid = del.closest('.retro').dataset.rid, id = del.closest('.fb-item').dataset.fbid;
+    const i = (FB[rid] || []).findIndex(x => x.id === id);
+    if (i < 0) return;
+    delFbEntry(FB[rid][i]);
+    FB[rid].splice(i, 1);
+    renderRetro();
+  }
+});
+document.getElementById('retro').addEventListener('focusout', e => {
+  const f = e.target.dataset && e.target.dataset.f;
+  if (!f) return;
+  const rid = e.target.closest('.retro').dataset.rid;
+  const rs = RETRO_SEASONS.find(x => x.id === rid);
+  RETRO_OVR[rid] = Object.assign({concl: rs && rs.concl || ''}, RETRO_OVR[rid] || {});
+  RETRO_OVR[rid][f] = e.target.innerText.trim();
+  try { localStorage.setItem('spb-retro:' + rid, JSON.stringify(RETRO_OVR[rid])); } catch (e2) {}
+});
+
+// --- таблица-справочник ---
+function buildTable() {
+  const tb = document.querySelector('#tbl tbody');
+  let rows = '<tr class="sec-row"><td colspan="6">Компания — общий флоу (задачи функций — со стрелкой ↳ под своим блоком)</td></tr>';
+  const flat = [];
+  (function walk(list, lvl) {
+    for (const t of list) { flat.push([t, lvl]); walk(kidsOf(t.id), lvl + 1); }
+  })(topLevel(), 0);
+  {
+    for (const [t, lvl] of flat) {
+      const f = effFld(t.id);
+      rows += `<tr><td>${lvl ? '↳'.repeat(lvl) + ' ' + t.id : t.id}</td><td>${esc(t.name)}${t.blocking ? ' · блокирует' : ''}<div class="tdesc">${f.result ? '<b>Результат:</b> ' + esc(f.result) : ''}${f.rules ? '<br><b>Правила:</b> ' + esc(f.rules) : ''}</div></td><td class="num">${fmtTd(t.e)} (${fmt(t.e)})</td><td class="num">${fmtTd(t.s)}</td><td>${effOwners(t.id).map(r => ROLES[r]).join(' + ')}</td><td>${effDeps(t.id).join(', ') || '—'}</td></tr>`;
+    }
+  }
+  tb.innerHTML = rows;
+}
+
+// --- аннотации: комментарий к любому выделенному тексту (движок AMP, ключи spb-anno:*) ---
+const ANNO = [];
+try {
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.indexOf('spb-anno:') === 0) {
+      const a = JSON.parse(localStorage.getItem(k));
+      if (a && a.id && !ANNO.some(x => x.id === a.id)) ANNO.push(a);
+    }
+  }
+  ANNO.sort((x, y) => (x.ts || 0) - (y.ts || 0));
+} catch (e) {}
+const saveAnno = () => {
+  if (!LSOK) return;
+  try {
+    const keep = new Set(ANNO.map(a => 'spb-anno:' + a.id));
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const k = localStorage.key(i);
+      if (k && k.indexOf('spb-anno:') === 0 && !keep.has(k)) localStorage.removeItem(k);
+    }
+    for (const a of ANNO) localStorage.setItem('spb-anno:' + a.id, JSON.stringify(a));
+  } catch (e) {}
+};
+const annoRoot = () => document.querySelector('.page');
+let annoRanges = [];
+
+function textPosOfRange(range) {
+  const root = annoRoot();
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let pos = 0, start = -1, end = -1, n;
+  while ((n = w.nextNode())) {
+    if (n === range.startContainer) start = pos + range.startOffset;
+    if (n === range.endContainer) { end = pos + range.endOffset; break; }
+    pos += n.textContent.length;
+  }
+  return [start, end];
+}
+function posToRange(start, end) {
+  const root = annoRoot();
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let pos = 0, n; const r = document.createRange(); let s = false;
+  while ((n = w.nextNode())) {
+    const L = n.textContent.length;
+    if (!s && start < pos + L) { r.setStart(n, Math.max(0, start - pos)); s = true; }
+    if (s && end <= pos + L) { r.setEnd(n, Math.max(0, end - pos)); return r; }
+    pos += L;
+  }
+  return null;
+}
+function refreshAnno() {
+  annoRanges = [];
+  if (!window.Highlight || !CSS.highlights) { updateAnnoBadge(); return; }
+  const full = annoRoot().textContent;
+  const hl = new Highlight();
+  for (const a of ANNO) {
+    let idx = -1;
+    if (a.prefix || a.suffix) idx = full.indexOf(a.prefix + a.exact + a.suffix);
+    if (idx >= 0) idx += a.prefix.length;
+    else idx = full.indexOf(a.exact);
+    a.orphan = idx < 0;
+    if (idx < 0) continue;
+    const r = posToRange(idx, idx + a.exact.length);
+    if (r) { hl.add(r); annoRanges.push({a, range: r}); }
+  }
+  CSS.highlights.set('spb-anno', hl);
+  updateAnnoBadge();
+}
+function updateAnnoBadge() {
+  const b = document.getElementById('btnAnno');
+  if (b) b.textContent = 'Комментарии' + (ANNO.length ? ' (' + ANNO.length + ')' : '');
+}
+
+const annoBtn = document.createElement('button');
+annoBtn.id = 'annoBtn'; annoBtn.type = 'button'; annoBtn.textContent = 'Комментировать';
+document.body.appendChild(annoBtn);
+const annoForm = document.createElement('div');
+annoForm.id = 'annoForm';
+annoForm.innerHTML = '<div class="af-quote"></div><textarea rows="3" placeholder="Комментарий к выделенному…"></textarea><div class="af-row"><button type="button" class="af-save">Сохранить</button><button type="button" class="af-cancel">Отмена</button></div>';
+document.body.appendChild(annoForm);
+const annoPop = document.createElement('div');
+annoPop.id = 'annoPop';
+document.body.appendChild(annoPop);
+let pendingAnno = null;
+
+document.addEventListener('mouseup', e => {
+  if (e.target.closest && e.target.closest('#annoBtn, #annoForm, #annoPop, .tip, #addmodal')) return;
+  setTimeout(() => {
+    const sel = window.getSelection();
+    const txt = sel && !sel.isCollapsed ? sel.toString() : '';
+    if (!txt.trim() || txt.length > 1200 || !annoRoot().contains(sel.anchorNode)) { annoBtn.style.display = 'none'; return; }
+    const r = sel.getRangeAt(0).getBoundingClientRect();
+    annoBtn.style.left = Math.max(8, window.scrollX + r.left + r.width / 2 - 70) + 'px';
+    annoBtn.style.top = (window.scrollY + r.top - 36) + 'px';
+    annoBtn.style.display = 'block';
+  }, 0);
+});
+annoBtn.addEventListener('click', () => {
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed) { annoBtn.style.display = 'none'; return; }
+  const range = sel.getRangeAt(0);
+  const [ps, pe] = textPosOfRange(range);
+  if (ps < 0 || pe < 0) return;
+  const full = annoRoot().textContent;
+  pendingAnno = {exact: full.slice(ps, pe), prefix: full.slice(Math.max(0, ps - 32), ps), suffix: full.slice(pe, pe + 32)};
+  annoForm.querySelector('.af-quote').textContent = '«' + pendingAnno.exact.slice(0, 140) + (pendingAnno.exact.length > 140 ? '…' : '') + '»';
+  const r = range.getBoundingClientRect();
+  annoForm.style.left = Math.max(8, Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - 340)) + 'px';
+  annoForm.style.top = (window.scrollY + r.bottom + 8) + 'px';
+  annoForm.style.display = 'block';
+  annoBtn.style.display = 'none';
+  annoForm.querySelector('textarea').focus();
+});
+annoForm.querySelector('.af-cancel').addEventListener('click', () => { annoForm.style.display = 'none'; pendingAnno = null; });
+annoForm.querySelector('.af-save').addEventListener('click', () => {
+  const txt = annoForm.querySelector('textarea').value.trim();
+  if (!txt || !pendingAnno) return;
+  ANNO.push(Object.assign(pendingAnno, {text: txt, user: (window.__HUB || {}).user || '', ts: Date.now(), id: 'a' + Date.now()}));
+  saveAnno();
+  annoForm.querySelector('textarea').value = '';
+  annoForm.style.display = 'none';
+  pendingAnno = null;
+  window.getSelection().removeAllRanges();
+  refreshAnno();
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest) return;
+  if (e.target.closest('#annoBtn, #annoForm, #annoPop, .tip, button, a, select, textarea, input, [contenteditable]')) return;
+  if (!window.getSelection().isCollapsed) return;
+  const hits = annoRanges.filter(({range}) => [...range.getClientRects()].some(r =>
+    e.clientX >= r.left - 2 && e.clientX <= r.right + 2 && e.clientY >= r.top - 2 && e.clientY <= r.bottom + 2));
+  if (!hits.length) { annoPop.style.display = 'none'; return; }
+  showAnnoPop(hits.map(x => x.a), e);
+});
+function showAnnoPop(list, e) {
+  annoPop.innerHTML = list.map(a =>
+    `<div class="ap-item" data-aid="${a.id}"><div class="ap-quote">«${esc(a.exact.slice(0, 90))}${a.exact.length > 90 ? '…' : ''}»</div>` +
+    `<div class="ap-text">${esc(a.text)}</div>` +
+    `<div class="ap-meta">${a.user ? esc(a.user) + ' · ' : ''}${new Date(a.ts).toLocaleString('ru-RU', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'})}` +
+    `<a class="ap-del" data-aid="${a.id}"> удалить</a></div></div>`).join('');
+  annoPop.style.left = Math.max(8, Math.min(window.scrollX + e.clientX - 150, window.scrollX + document.documentElement.clientWidth - 330)) + 'px';
+  annoPop.style.top = (window.scrollY + e.clientY + 14) + 'px';
+  annoPop.style.display = 'block';
+}
+annoPop.addEventListener('click', e => {
+  const d = e.target.closest('.ap-del');
+  if (!d) return;
+  const i = ANNO.findIndex(a => a.id === d.dataset.aid);
+  if (i >= 0) { ANNO.splice(i, 1); saveAnno(); refreshAnno(); }
+  annoPop.style.display = 'none';
+});
+document.getElementById('btnAnno').addEventListener('click', () => {
+  const p = document.getElementById('annoPanel');
+  if (p.style.display === 'block') { p.style.display = 'none'; return; }
+  p.innerHTML = '<div class="an-h">Комментарии к тексту <button type="button" id="annoClose">×</button></div>' + (ANNO.length ? ANNO.map(a =>
+    `<div class="an-item${a.orphan ? ' orphan' : ''}" data-aid="${a.id}"><div class="ap-quote">«${esc(a.exact.slice(0, 70))}${a.exact.length > 70 ? '…' : ''}»${a.orphan ? ' <i>(место не найдено — текст изменился)</i>' : ''}</div>` +
+    `<div class="ap-text">${esc(a.text)}</div><div class="ap-meta">${a.user ? esc(a.user) + ' · ' : ''}${new Date(a.ts).toLocaleString('ru-RU', {day:'2-digit', month:'2-digit'})} · <a class="an-go" data-aid="${a.id}">к месту</a> · <a class="ap-del" data-aid="${a.id}">удалить</a></div></div>`).join('')
+    : '<div class="an-none">Выдели любой текст на странице — появится кнопка «Комментировать»</div>');
+  p.style.display = 'block';
+});
+document.getElementById('annoPanel').addEventListener('click', e => {
+  if (e.target.id === 'annoClose') { e.target.closest('#annoPanel').style.display = 'none'; return; }
+  const del = e.target.closest('.ap-del');
+  if (del) {
+    const i = ANNO.findIndex(a => a.id === del.dataset.aid);
+    if (i >= 0) { ANNO.splice(i, 1); saveAnno(); refreshAnno(); }
+    document.getElementById('btnAnno').click(); document.getElementById('btnAnno').click();
+    return;
+  }
+  const go = e.target.closest('.an-go');
+  if (go) {
+    const hit = annoRanges.find(x => x.a.id === go.dataset.aid);
+    if (!hit) return;
+    hit.range.startContainer.parentElement.scrollIntoView({block: 'center'});
+  }
+});
+
+// Независимый MVP: правки хранятся локально в браузере.
+if (!window.__HUB) {
+  const warn = document.createElement('div');
+  warn.id = 'localWarn';
+  warn.innerHTML = 'MVP: изменения и комментарии пока сохраняются <b>только в этом браузере</b>. Три нормативных сценария загружены из рабочей таблицы.';
+  document.querySelector('.page').prepend(warn);
+}
+
+// --- вкладки: каждая несёт один смысл; deep-link по хешу (#gantt / #feedback / #about) ---
+// Вкладки: «О сезоне» · «Компания» (общий флоу) · по одной на каждую функцию ·
+// «Фидбек». Вкладка функции — не отдельный документ, а вид на тот же план:
+// свои блоки полноразмерно, чужие блоки-зависимости бледными (контекст), новые
+// задачи создаются сразу со своей функцией. Данные общие, правки не конфликтуют.
+const baseTabs = () => ['about', 'gantt', ...roleIds().filter(r => r !== 'all').map(r => 'fn-' + r), 'feedback'];
+function renderTabs(active) {
+  const host = document.getElementById('tabs');
+  const label = v => v === 'about' ? 'О сезоне' : v === 'gantt' ? 'Компания'
+    : v === 'feedback' ? 'Фидбек' : roleName(v.slice(3));
+  host.innerHTML = baseTabs().map(v => {
+    const dot = v.startsWith('fn-') ? `<span class="tabdot" style="background:${roleColor(v.slice(3))}"></span>` : '';
+    return `<button class="tabbtn${v === active ? ' on' : ''}" data-v="${v}">${dot}${esc(label(v))}</button>`;
+  }).join('');
+}
+function setTab(v) {
+  const TABS = baseTabs();
+  if (!TABS.includes(v)) v = 'gantt';
+  const fn = v.startsWith('fn-') ? v.slice(3) : null;
+  if (fn !== FILTER) {                        // вкладка и есть выбор пространства функции
+    FILTER = fn;
+    try { fn ? sessionStorage.setItem('spb-fn-filter', fn) : sessionStorage.removeItem('spb-fn-filter'); } catch (e) {}
+    unpin(); build(); applyFilterUI();
+  }
+  renderTabs(v);
+  document.getElementById('view-about').classList.toggle('on', v === 'about');
+  document.getElementById('view-gantt').classList.toggle('on', v === 'gantt' || !!fn);
+  document.getElementById('view-feedback').classList.toggle('on', v === 'feedback');
+  if (location.hash.slice(1) !== v) history.replaceState(null, '', '#' + v);
+  window.scrollTo(0, 0);
+  try { refreshAnno(); } catch (e) {}
+}
+document.getElementById('tabs').addEventListener('click', e => { const b = e.target.closest('.tabbtn'); if (b) setTab(b.dataset.v); });
+window.addEventListener('hashchange', () => setTab(location.hash.slice(1)));
+
+build();
+renderLegend();
+renderRetro();
+setTab(baseTabs().includes(location.hash.slice(1)) ? location.hash.slice(1) : 'gantt');
+refreshAnno();
+
+// --- шапка шкалы липнет к верху окна, пока диаграмма на экране ---
+function stickHead() {
+  const sc = document.querySelector('.g-scroll');
+  const hr = sc && sc.querySelector('.g-headrow');
+  if (!hr) return;
+  const r = sc.getBoundingClientRect();
+  const maxShift = sc.clientHeight - hr.offsetHeight - 24;
+  const shift = Math.max(0, Math.min(-r.top, maxShift));
+  hr.style.transform = shift > 0 ? `translateY(${shift}px)` : '';
+  hr.classList.toggle('stuck', shift > 0);
+}
+window.addEventListener('scroll', stickHead, {passive: true});
+</script>
